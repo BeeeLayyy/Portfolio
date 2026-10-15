@@ -68,13 +68,12 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 
 ## Where things stand (Oct 15, 2026)
 
-- Phases 0, 1 and 2 done and on `main`. Phase 3 (polish) done on `feat/page-skeleton`, not merged yet.
+- Phases 0 to 3 done and on `main` (Phase 3 merged Oct 15, after Brandon checked it on his phone and with VoiceOver).
 - Phase 3 covered: hero entrance, page-change fade, button press, project-row hover preview, hero split hover; phone polish; page descriptions, share image and icons; review-animations, WCAG 2.2 AA review and design critique, each with fixes; Lighthouse mobile 93 to 97 performance and 100 for accessibility, best practices and SEO.
 - `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
 - Fonts: Newsreader italic is a separate, non-preloaded font (`font-serif-italic`), and the hero's `rise-in` starts at 1% opacity, not 0, so Largest Contentful Paint counts at first paint. Both are deliberate; see the comments in `layout.tsx` and `globals.css`.
 
 ## Next up
 
-1. Brandon: check phone polish on a real phone and do a VoiceOver pass, then merge Phase 3 to `main`.
-2. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot (desktop and the phone row both use it).
-3. Phase 4: custom domain (D7, then set `metadataBase` in the layout), analytics, phone smoke test.
+1. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot (desktop and the phone row both use it).
+2. Phase 4: custom domain (D7, then set `metadataBase` in the layout), analytics, phone smoke test.
