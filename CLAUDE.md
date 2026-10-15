@@ -68,11 +68,12 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 
 ## Where things stand (Oct 15, 2026)
 
-- Phase 0 and Phase 1 done. Phase 2 (content) in progress on branch `feat/page-skeleton`, not merged to `main` yet. Production still shows the starter page.
-- Done in Phase 2: Courtside write-up, Experience from the resume, LinkedIn and email links, full toolkit, hero line in past tense, resume button to LinkedIn, About bio, Goals and Now copy.
+- Phases 0, 1 and 2 done. Phase 2 merged to `main` on Oct 15, so production now shows the real site.
+- Phase 2 covered: all copy (hero, About bio, Goals, Now, Courtside write-up, Experience from the resume), headshot and Courtside screenshot as WebP with alt text, resume button to LinkedIn, link and confidentiality check, and removal of the Phase 1 style tile.
+- `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
 
 ## Next up
 
-1. Finish Phase 2: headshot and project images with alt text, then the link and confidentiality check. Merge to `main`, then Phase 3 polish.
+1. Phase 3 polish on a new branch: motion (hero, page transitions, project-row hover image), phone polish, metadata and share image. Plan motion with `find-animation-opportunities` first.
 2. Optional: add the graduation year to the first goal in `src/content/now.ts` once Brandon confirms it.
-3. After Courtside's Oct 28 public launch, add real numbers (weekly returning visitors) to its outcome and update the Courtside item in Now.
+3. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot.
