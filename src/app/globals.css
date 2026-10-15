@@ -239,9 +239,17 @@ body {
   animation: none;
 }
 
+/* Moving across the screen, so ease-in-out: leaves gently, settles gently. */
 ::view-transition-group(.morph) {
   animation-duration: var(--duration-morph);
-  animation-timing-function: var(--ease-out-soft);
+  animation-timing-function: var(--ease-in-out-soft);
+}
+
+/* No partner to morph from (a keyboard click, nothing visible to grow
+   from): no fade of its own. The page fade already covers the change. */
+::view-transition-new(.morph):only-child,
+::view-transition-old(.morph):only-child {
+  animation: none;
 }
 
 /* Links that only change color on hover ease like the nav does. In the base
