@@ -19,7 +19,7 @@ export const projects: Project[] = [
       "A site built on real stats.nba.com data: player pages with shot charts, recent form and players with similar profiles, team scouting reports, rankings, lineup and on/off splits, projections and playoff odds, plus live scores with win chances during games. I ran it like a product launch, with an audit of the live site and code, an eight-milestone plan, and a readiness tracker covering the 17 areas a professional team checks before going public. I build it with Claude Code, using teams of agents working in parallel branches.",
     outcome:
       "Courtside launches with the NBA season. Opening night on October 20 is the first real test of the live features, and the public launch follows on October 28. Analytics are privacy-first, with no cookies and no IP addresses, and the number I track is fans who come back each week.",
-    links: [{ label: "Visit Courtside", href: "https://courtside.higgsfield.app" }],
+    links: [{ label: "Visit Courtside", href: "https://courtside-ecru.vercel.app" }],
     featured: true,
   },
 ];
