@@ -58,8 +58,8 @@ export default function Home() {
       <Container className="pb-24">
         <div className="flex flex-wrap gap-4">
           <ButtonLink href="/contact">Get in touch</ButtonLink>
-          <ButtonLink href={site.resumeHref} variant="secondary">
-            Download resume
+          <ButtonLink href={site.resume.href} variant="secondary">
+            {site.resume.label}
           </ButtonLink>
         </div>
       </Container>

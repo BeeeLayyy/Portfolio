@@ -8,14 +8,15 @@ export const site = {
     "Finance and MIS at Villanova. Work, projects, and what I'm building now.",
   finance: {
     title: "Finance",
-    line: "Financial control at JPMorgan Chase. Reading what the numbers say.",
+    line: "Reconciled balance sheets for Treasury at JPMorgan Chase. Learned to read what the numbers say.",
   },
   data: {
     title: "Data & technology",
     line: "Revenue operations at SAP. Building the systems that produce them.",
   },
   email: "ble02@villanova.edu",
-  resumeHref: "/resume.pdf", // TODO: add the PDF to /public
+  // The resume PDF lists a phone number, so the button points to LinkedIn instead.
+  resume: { label: "Resume on LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
   toolkit: ["SQL", "Python", "Excel", "Power BI", "Tableau", "Alteryx", "Databricks", "SAP S/4HANA", "Salesforce", "Figma", "PowerPoint", "Claude"],
 };
 

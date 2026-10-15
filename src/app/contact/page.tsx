@@ -14,8 +14,8 @@ export default function ContactPage() {
       <Container className="pb-24">
         <div className="flex flex-wrap gap-4">
           <ButtonLink href={`mailto:${site.email}`}>Email me</ButtonLink>
-          <ButtonLink href={site.resumeHref} variant="secondary">
-            Download resume
+          <ButtonLink href={site.resume.href} variant="secondary">
+            {site.resume.label}
           </ButtonLink>
         </div>
         <ul className="mt-12 space-y-2">
