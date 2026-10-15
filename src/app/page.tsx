@@ -25,17 +25,30 @@ export default function Home() {
     <>
       {/* Full width like Lusion's first screen: the title over the left of
           center, then the card filling the rest of the screen. */}
-      <section aria-labelledby="hero-title" className="flex min-h-[calc(100svh-var(--spacing-header))] flex-col">
+      <section aria-labelledby="hero-title" className="flex flex-col md:min-h-[calc(100svh-var(--spacing-header))]">
         <div className="mx-auto w-full max-w-hero px-4 pt-4 md:px-8 md:pt-2">
           <div className="md:grid md:grid-cols-12">
             {/* Starts at 1% opacity so Largest Contentful Paint counts at first paint (see globals.css). */}
             <h1
               id="hero-title"
-              className="font-serif text-[clamp(1.75rem,2.2vw,2.75rem)] leading-[1.12] md:col-span-6 md:col-start-4"
+              className="font-serif text-[clamp(2.25rem,4.4vw,4.75rem)] leading-[1.04] tracking-tight md:col-span-7 md:col-start-4"
             >
+              {/* The headshot rides in the first line like a word (D18).
+                  Decorative here: the name is right after it. */}
+              <span className="hero-word mr-[0.25em] align-[-0.12em]" style={{ "--i": 0 } as CSSProperties}>
+                <Image
+                  src={site.headshot.src}
+                  alt=""
+                  width={160}
+                  height={160}
+                  sizes="(min-width: 768px) 80px, 48px"
+                  className="inline-block size-[0.92em] rounded-full object-cover object-[50%_18%] ring-2 ring-accent/60"
+                  preload
+                />
+              </span>
               {words.map((word, i) => (
                 <span key={i}>
-                  <span className="hero-word" style={{ "--i": i } as CSSProperties}>
+                  <span className="hero-word" style={{ "--i": i + 1 } as CSSProperties}>
                     {word}
                   </span>
                   {i < words.length - 1 && " "}
@@ -91,6 +104,16 @@ export default function Home() {
               className="text-[clamp(3rem,8vw,7rem)] leading-[1] font-medium tracking-tight md:col-span-8"
             />
             <div className="md:col-span-5 md:col-start-8">
+              <div className="group mb-8 w-48 overflow-hidden rounded-media ring-1 ring-rule md:w-56" data-reveal="scale">
+                <Image
+                  src={site.headshot.src}
+                  alt={site.headshot.alt}
+                  width={800}
+                  height={1000}
+                  sizes="224px"
+                  className="aspect-[4/5] object-cover transition-transform duration-(--duration-reveal) ease-out-soft pointer-fine:group-hover:scale-[1.04]"
+                />
+              </div>
               <RevealText as="p" mode="fade-words" text={site.approach.line} className="text-lg" />
               <div className="mt-8">
                 <ButtonLink href={site.approach.cta.href} variant="secondary">

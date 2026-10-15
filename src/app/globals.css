@@ -79,6 +79,7 @@
   --duration-reveal: 900ms; /* words rising out of their line as a section scrolls in */
   --duration-intro: 2200ms; /* first-visit intro: count to 100, name, wipe (D16) */
   --intro-offset: 1800ms;   /* when the hero entrance starts under the intro's wipe */
+  --duration-ambient: 46s;  /* one drift of the background light (D18) */
 }
 
 html {
@@ -1072,3 +1073,90 @@ html.lenis body {
   transform-origin: center top;
   will-change: transform;
 }
+
+/* --- Backdrop (D18): the living background behind every page. Two soft
+   pools of blue light drift on long loops and slide as you scroll, over a
+   faint dot grid that creeps diagonally. Only transforms animate, each on
+   its own layer, so the page never repaints for it. Glows stay faint enough
+   that muted text keeps more than 7:1 contrast on top of them. --- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.backdrop-grid {
+  position: absolute;
+  inset: -2rem;
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--color-ink) 9%, transparent) 1px, transparent 1.5px);
+  background-size: 2rem 2rem;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent 85%);
+  animation: grid-creep calc(var(--duration-ambient) / 2) linear infinite;
+  will-change: transform;
+}
+
+/* One tile per loop, so the creep is seamless. */
+@keyframes grid-creep {
+  to { transform: translate(2rem, 2rem); }
+}
+
+.backdrop-glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.backdrop-glow-a {
+  left: -25vmax;
+  top: -30vmax;
+  background: radial-gradient(circle, color-mix(in oklab, var(--color-accent) 16%, transparent), transparent 62%);
+  animation: glow-drift-a var(--duration-ambient) var(--ease-in-out-soft) infinite alternate;
+}
+
+.backdrop-glow-b {
+  right: -30vmax;
+  top: 20vh;
+  background: radial-gradient(circle, color-mix(in oklab, var(--color-scene-cobalt) 18%, transparent), transparent 60%);
+  animation: glow-drift-b calc(var(--duration-ambient) * 1.3) var(--ease-in-out-soft) infinite alternate;
+}
+
+.backdrop-glow-c {
+  left: 10vw;
+  bottom: -45vmax;
+  background: radial-gradient(circle, color-mix(in oklab, var(--color-accent-strong) 14%, transparent), transparent 60%);
+  animation: glow-drift-c calc(var(--duration-ambient) * 0.8) var(--ease-in-out-soft) infinite alternate;
+}
+
+@keyframes glow-drift-a {
+  to { transform: translate(35vw, 25vh) scale(1.2); }
+}
+
+@keyframes glow-drift-b {
+  to { transform: translate(-40vw, 30vh) scale(0.85); }
+}
+
+@keyframes glow-drift-c {
+  to { transform: translate(30vw, -35vh) scale(1.15); }
+}
+
+/* Scrolling slides the light upward a little, so the page feels deep. */
+@keyframes glow-scroll {
+  to { transform: translateY(-25vh); }
+}
+
+.backdrop-scroll {
+  position: absolute;
+  inset: 0;
+}
+
+@supports (animation-timeline: scroll()) {
+  .backdrop-scroll {
+    animation: glow-scroll linear both;
+    animation-timeline: scroll(root);
+  }
+}
+

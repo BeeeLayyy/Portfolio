@@ -92,5 +92,13 @@ Scene colors are paint for 3D objects only, never text or interface; white, blac
 
 Cursor warp ("screen paint"): moving the mouse over the card leaves a fluid trail that bends the picture and splits its colors like a lens; it fades in about a second. There is no page-wide trail: it ran on every mouse move for little gain (review-animations, Oct 15). The pieces bounce off the cursor: it hits them with its own speed, they fly, spin and knock into each other, then drift home.
 
-Phones, touch screens and reduced motion get a still instead: `public/images/hero-scene.webp` (wide) and `hero-scene-phone.webp` (tall), captured from the live scene. Recapture both whenever the scene changes.
+Phones, touch screens and reduced motion get a still instead: `public/images/hero-scene-v2.webp` (wide) and `hero-scene-phone-v2.webp` (tall), captured from the live scene. Recapture both whenever the scene changes, and bump the `-v` number in the file names: image optimizers cache by file name, so a changed image under the old name can be served stale.
+
+## Living background (D18)
+
+Behind every page: two soft pools of blue light (`--color-accent`, `--color-scene-cobalt`, `--color-accent-strong` at 14 to 18%) drift on long loops (`--duration-ambient`, 46s) and slide up as you scroll, over a faint dot grid (ink at 9%) that creeps one tile per loop. Only transforms animate, so it doesn't repaint the page; reduced motion holds it still. Glows stay faint enough that muted text keeps over 7:1 contrast. Component: `src/components/motion/backdrop.tsx`.
+
+## Home hero title (D18)
+
+"Brandon Le's portfolio, fully diversified." with Brandon's headshot as a round image inside the first line, rising in with the words. A larger portrait sits beside the intro paragraph in the next section.
 

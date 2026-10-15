@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 // The rounded card under the name that holds the 3D scene (D15).
 //
-// A still render of the scene (public/images/hero-scene.webp) fades in first,
+// A still render of the scene (public/images/hero-scene-v2.webp) fades in first,
 // so nothing waits on Three.js. Once the page is idle, desktops with a mouse
 // load the live scene and crossfade to it. Phones, touch screens and reduced
 // motion keep the still. Decorative, so it's hidden from screen readers.
@@ -18,14 +18,14 @@ import { useEffect, useRef, useState } from "react";
 // Two stills: wide for the desktop card, tall for the phone card. Both are
 // captured from the live scene (see the D17 notes in DESIGN.md).
 const stillWide = getImageProps({
-  src: "/images/hero-scene.webp",
+  src: "/images/hero-scene-v2.webp",
   alt: "",
   width: 2304,
   height: 909,
   sizes: "(min-width: 1920px) 1856px, 100vw",
 }).props;
 const stillTall = getImageProps({
-  src: "/images/hero-scene-phone.webp",
+  src: "/images/hero-scene-phone-v2.webp",
   alt: "",
   width: 895,
   height: 1123,

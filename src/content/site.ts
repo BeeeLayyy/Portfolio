@@ -5,10 +5,10 @@ export const site = {
   url: "https://brandonle.site", // D7. Share links and the share image use it.
   description:
     "Finance and MIS at Villanova. Work, projects, and what I'm building now.",
-  // Home hero statement (D16, Lusion-style layout): one sentence under the
-  // header, above the 3D card.
-  heroLine:
-    "Brandon Le works where finance meets data, from balance sheets at JPMorgan Chase to revenue systems at SAP.",
+  // Home hero title (D18): short, with a finance pun. "Portfolio" is both
+  // the site and an investment portfolio; "diversified" is finance, data
+  // and basketball. Brandon's headshot sits inline before it.
+  heroLine: "Brandon Le's portfolio, fully diversified.",
   // The section after the hero: a two-line title, a short paragraph, a link.
   approach: {
     title: ["Finance,", "built on data"],

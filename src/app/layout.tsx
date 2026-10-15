@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { EndSection } from "@/components/end-section";
+import { Backdrop } from "@/components/motion/backdrop";
 import { Intro } from "@/components/motion/intro";
 import { RevealObserver } from "@/components/motion/reveal-observer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <Backdrop />
         <Intro />
         <SiteHeader />
         <main id="main" tabIndex={-1} className="flex-1 pt-header">
