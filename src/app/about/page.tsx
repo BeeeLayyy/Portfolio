@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader, Section, Tag } from "@/components/ui";
+import { Container, PageHeader, Section, Tag } from "@/components/ui";
 import { goals } from "@/content/now";
 import { site } from "@/content/site";
 
@@ -8,10 +8,14 @@ export const metadata: Metadata = { title: "About" };
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        title="About"
-        intro="Senior at Villanova studying Finance and MIS. Placeholder bio, written in Phase 2."
-      />
+      <PageHeader title="About" intro={site.bio[0]} />
+      <Container>
+        <div className="max-w-prose space-y-6 text-lg text-paper-muted">
+          {site.bio.slice(1).map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
+      </Container>
       <Section title="Goals">
         <ul className="grid gap-8 md:grid-cols-2">
           {goals.map((g, i) => (

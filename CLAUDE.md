@@ -64,18 +64,15 @@ Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `as
 
 ## Decisions so far
 
-D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). Open: D7 custom domain (by Phase 4).
+D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). D11 name Nike and Coca-Cola publicly. D12 resume button links to LinkedIn (the PDF has a phone number). Open: D7 custom domain (by Phase 4).
 
 ## Where things stand (Oct 15, 2026)
 
 - Phase 0 and Phase 1 done. Phase 2 (content) in progress on branch `feat/page-skeleton`, not merged to `main` yet. Production still shows the starter page.
-- Done in Phase 2: Courtside write-up, Experience from the resume, LinkedIn and email links, full toolkit.
+- Done in Phase 2: Courtside write-up, Experience from the resume, LinkedIn and email links, full toolkit, hero line in past tense, resume button to LinkedIn, About bio, Goals and Now copy.
 
 ## Next up
 
-1. Ask Brandon: is naming Nike and Coca-Cola (SAP Product Analyst highlights) fine publicly, or use "Fortune 500 accounts"?
-2. Resume download: the resume PDF has his phone number. Either get a version without it for `/public/resume.pdf`, or point the button at LinkedIn.
-3. Write the bio (About), goals, and Now section with `design:ux-copy`. Remaining placeholders are marked TODO in `src/content/`.
-4. Hero lines in `src/content/site.ts` still describe JPMorgan as current; update to past tense.
-5. Finish Phase 2 (images and alt text, link and confidentiality check), merge to `main`, then Phase 3 polish.
-6. After Courtside's Oct 28 public launch, add real numbers (weekly returning visitors) to its outcome.
+1. Finish Phase 2: headshot and project images with alt text, then the link and confidentiality check. Merge to `main`, then Phase 3 polish.
+2. Optional: add the graduation year to the first goal in `src/content/now.ts` once Brandon confirms it.
+3. After Courtside's Oct 28 public launch, add real numbers (weekly returning visitors) to its outcome and update the Courtside item in Now.
