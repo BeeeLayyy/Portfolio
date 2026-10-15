@@ -18,6 +18,15 @@ export default function ContactPage() {
             {site.resume.label}
           </ButtonLink>
         </div>
+        <p className="mt-6 text-paper-muted">
+          Or write to{" "}
+          <a
+            href={`mailto:${site.email}`}
+            className="inline-block py-1 text-paper underline decoration-rule underline-offset-4 hover:decoration-lamp"
+          >
+            {site.email}
+          </a>
+        </p>
         <ul className="mt-12 space-y-2">
           {socials.map((s) => (
             <li key={s.href}>

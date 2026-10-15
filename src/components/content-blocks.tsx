@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ProjectRowLink } from "./project-row-link";
 import type { NowItem, Project, Role } from "@/content/types";
 import { Tag } from "./ui";
@@ -17,6 +18,18 @@ export function ProjectRow({ project }: { project: Project }) {
         </span>
         <span className="text-paper-muted">{project.oneLiner}</span>
         <span className="text-sm text-paper-muted">{project.year}</span>
+        {/* Without a mouse there's no hover preview, so show the screenshot in
+            the row. Decorative: the row's text already names the project. */}
+        {project.image && (
+          <Image
+            src={project.image.src}
+            alt=""
+            width={1600}
+            height={900}
+            sizes="(min-width: 768px) 1072px, 100vw"
+            className="mt-2 rounded-media ring-1 ring-rule pointer-fine:hidden md:col-span-3"
+          />
+        )}
       </ProjectRowLink>
     </li>
   );

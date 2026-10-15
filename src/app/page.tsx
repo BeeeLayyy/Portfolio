@@ -27,7 +27,7 @@ export default function Home() {
         </h1>
         <HeroPlayed />
         <div className="hero-split grid md:grid-cols-2">
-          <div className="hero-half border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 0 } as React.CSSProperties}>
+          <div className="hero-half hero-half-start border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 0 } as React.CSSProperties}>
             <h2 className="hero-title w-fit font-serif text-3xl italic">{site.finance.title}</h2>
             <p className="mt-4 max-w-sm text-paper-muted">{site.finance.line}</p>
           </div>

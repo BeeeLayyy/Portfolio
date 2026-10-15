@@ -196,6 +196,16 @@ body {
   transition: transform var(--duration-base) var(--ease-out-soft);
 }
 
+/* Hero: the divider lines run edge to edge, but "Finance" starts on the page
+   column's left edge (Container: max-w-6xl, px-10 from md). In padding, 100%
+   is the half's width, so the full row is 200%. The right half keeps its
+   normal padding so "Data & technology" stays on one line on desktops. */
+@variant md {
+  .hero-half-start {
+    padding-left: calc(max(0px, 100% - var(--container-6xl) / 2) + var(--spacing) * 10);
+  }
+}
+
 .hero-half {
   transition: opacity var(--duration-base) var(--ease-out-soft);
 }
