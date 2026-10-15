@@ -22,16 +22,27 @@ export function ProjectRow({ project }: { project: Project }) {
   );
 }
 
-export function RoleItem({ role, detailed = false }: { role: Role; detailed?: boolean }) {
+// On Home these sit under a section heading (h2), so they're h3. On their own
+// page they sit right under the page title, so pass headingLevel={2}.
+export function RoleItem({
+  role,
+  detailed = false,
+  headingLevel = 3,
+}: {
+  role: Role;
+  detailed?: boolean;
+  headingLevel?: 2 | 3;
+}) {
+  const Heading = `h${headingLevel}` as const;
   return (
     <li className="grid gap-3 border-b border-rule py-8 md:grid-cols-[12rem_1fr] md:gap-8">
       <p className="text-sm text-paper-muted">
         {role.start} to {role.end}
       </p>
       <div>
-        <h3 className="text-lg font-medium">
+        <Heading className="text-lg font-medium">
           {role.title}, {role.company}
-        </h3>
+        </Heading>
         <p className="text-paper-muted">
           {role.team === role.title.replace(/ Intern$/, "") ? role.location : `${role.team}, ${role.location}`}
         </p>
@@ -56,10 +67,11 @@ export function RoleItem({ role, detailed = false }: { role: Role; detailed?: bo
   );
 }
 
-export function NowCard({ item }: { item: NowItem }) {
+export function NowCard({ item, headingLevel = 3 }: { item: NowItem; headingLevel?: 2 | 3 }) {
+  const Heading = `h${headingLevel}` as const;
   return (
     <li className="rounded-media bg-ledger-raised p-6">
-      <h3 className="text-lg font-medium">{item.title}</h3>
+      <Heading className="text-lg font-medium">{item.title}</Heading>
       <p className="mt-2 text-paper-muted">{item.detail}</p>
     </li>
   );

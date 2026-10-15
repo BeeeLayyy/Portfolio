@@ -40,7 +40,8 @@ export function ProjectRowLink({
     const flip = event.clientX + GAP + WIDTH > window.innerWidth;
     const left = flip ? event.clientX - GAP - WIDTH : event.clientX + GAP;
     const top = event.clientY - HEIGHT / 2;
-    setSide(flip ? "left" : "right");
+    const nextSide = flip ? "left" : "right";
+    if (nextSide !== side) setSide(nextSide); // no re-render on every pointer move
     if (jump) {
       x.jump(left);
       y.jump(top);

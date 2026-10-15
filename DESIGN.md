@@ -51,4 +51,4 @@ Radius follows role, not one value everywhere: `rounded-tag` 2px (skill tags), `
 
 Rules: one orchestrated moment per page; everything else moves only in answer to the visitor (hover, scroll, click). Reduced-motion settings turn every animation into an instant change, with no delay (handled globally in `globals.css`).
 
-In use: the home hero entrance (name rises in word by word, halves fade in, once per session), a 280ms fade and 8px rise when a new page opens from a link (not on first load, nothing on exit), and buttons shrink to 97% while pressed.
+In use: the home hero entrance (name rises in word by word, halves rise in after it, once per session), a 280ms fade and 8px rise when a new page opens from a link (not on first load, nothing on exit), and buttons shrink to 97% while pressed.

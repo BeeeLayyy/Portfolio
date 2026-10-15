@@ -96,6 +96,12 @@ body {
   border-radius: var(--radius-tag);
 }
 
+/* The skip link moves focus to <main> (tabindex -1) so the next Tab starts
+   there. It isn't a control, so no ring around the whole page. */
+#main:focus {
+  outline: none;
+}
+
 /* Reduced motion: every animation collapses to an instant change */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -110,19 +116,13 @@ body {
 }
 
 /* Home hero entrance, the one orchestrated moment (about 860ms in all).
-   The name rises in word by word, then the two halves fade in.
+   The name rises in word by word, then the two halves rise in after it.
    Plays once per session: once it has played, <html data-hero="played">
    turns it off (set by HeroPlayed and an inline script in the layout). */
 @keyframes rise-in {
   from {
     opacity: 0;
     transform: translateY(0.35em);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
   }
 }
 
@@ -133,7 +133,7 @@ body {
 }
 
 .hero-half {
-  animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
+  animation: rise-in var(--duration-slow) var(--ease-out-soft) both;
   animation-delay: calc(var(--hero-follow) + var(--i) * var(--stagger));
 }
 

@@ -13,7 +13,7 @@ export default function NowPage() {
       <Container className="pb-24">
         <ul className="grid gap-4 md:grid-cols-2">
           {now.map((item) => (
-            <NowCard key={item.title} item={item} />
+            <NowCard key={item.title} item={item} headingLevel={2} />
           ))}
         </ul>
       </Container>

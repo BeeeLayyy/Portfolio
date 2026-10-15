@@ -28,7 +28,7 @@ export function Section({ title, children, href, linkLabel }: {
       <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-4">
         <h2 className="font-serif text-2xl">{title}</h2>
         {href && linkLabel && (
-          <Link href={href} className="text-sm text-paper-muted hover:text-lamp">
+          <Link href={href} className="inline-block py-1 text-sm text-paper-muted hover:text-lamp">
             {linkLabel}
           </Link>
         )}

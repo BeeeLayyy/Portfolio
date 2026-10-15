@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   return (
     <article>
       <Container className="pt-16 pb-12 md:pt-24">
-        <Link href="/projects" className="text-sm text-paper-muted hover:text-lamp">
+        <Link href="/projects" className="inline-block py-1 text-sm text-paper-muted hover:text-lamp">
           All projects
         </Link>
         <h1 className="mt-6 font-serif text-3xl">{project.title}</h1>

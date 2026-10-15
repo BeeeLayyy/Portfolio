@@ -16,7 +16,7 @@ export default function ExperiencePage() {
       <Container className="pb-24">
         <ul className="border-t border-rule">
           {roles.map((r) => (
-            <RoleItem key={`${r.company}-${r.team}`} role={r} detailed />
+            <RoleItem key={`${r.company}-${r.team}`} role={r} detailed headingLevel={2} />
           ))}
         </ul>
       </Container>
