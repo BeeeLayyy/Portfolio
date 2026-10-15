@@ -26,6 +26,7 @@ After each finished task or decision, update the plan board and decisions log, t
   - `mobile-native`: phone polish in Phase 3 (tap highlights, 100vh, notch).
   - `apple-design`, `pick-ui-library`, `prototype`: only when asked.
   - Not used here: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (no toasts on this site).
+- 21st.dev component library is connected as an MCP server in `.mcp.json` (key read from the `API_KEY_21ST` environment variable; never commit the key). Use it to find or generate UI components, then restyle anything it returns with our tokens and `DESIGN.md` rules. Don't paste a component in with its own colors, fonts or easing.
 - Motion rules from these skills must still use our tokens in `globals.css` (`--ease-out-soft`, `--duration-*`) and respect reduced motion. Extend the tokens; never add a parallel set.
 - Narrate the "why" behind decisions at a level a smart beginner can follow. Keep replies brief and direct. Copy is concise and human, with no em dashes.
 - Run `npx next typegen` before `npx tsc --noEmit` when routes change. Local builds can fail fetching Google Fonts offline; Vercel builds fine.
