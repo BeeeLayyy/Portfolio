@@ -137,3 +137,58 @@ body {
 .page-enter {
   animation: page-enter var(--duration-base) var(--ease-out-soft) both;
 }
+
+/* Project row preview (ProjectRowLink): the screenshot grows in beside the
+   cursor. The wrapper's position is driven by Motion; this only fades and
+   scales the image, from the side facing the cursor. */
+.project-preview {
+  opacity: 0;
+  transform: scale(0.96);
+  transform-origin: left center;
+  transition:
+    opacity var(--duration-quick) var(--ease-out-soft),
+    transform var(--duration-quick) var(--ease-out-soft);
+}
+
+.project-preview[data-side="left"] {
+  transform-origin: right center;
+}
+
+.project-preview[data-shown="true"] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hero split hover: the hovered half gets an amber rule under its title and
+   the other half steps back to 80% (body text stays above 4.5:1 contrast).
+   Mouse only, since touch fires a hover on tap. */
+.hero-title {
+  position: relative;
+}
+
+.hero-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 2px;
+  background: var(--color-lamp);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-base) var(--ease-out-soft);
+}
+
+.hero-half {
+  transition: opacity var(--duration-base) var(--ease-out-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-half:hover .hero-title::after {
+    transform: scaleX(1);
+  }
+
+  .hero-split:has(.hero-half:hover) .hero-half:not(:hover) {
+    opacity: 0.8;
+  }
+}

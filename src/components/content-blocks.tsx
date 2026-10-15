@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ProjectRowLink } from "./project-row-link";
 import type { NowItem, Project, Role } from "@/content/types";
 import { Tag } from "./ui";
 
@@ -7,8 +7,9 @@ import { Tag } from "./ui";
 export function ProjectRow({ project }: { project: Project }) {
   return (
     <li className="border-b border-rule">
-      <Link
+      <ProjectRowLink
         href={`/projects/${project.slug}`}
+        image={project.image}
         className="group grid gap-2 py-6 md:grid-cols-[1fr_2fr_auto] md:items-baseline md:gap-8"
       >
         <span className="font-serif text-xl transition-colors duration-(--duration-quick) group-hover:text-lamp">
@@ -16,7 +17,7 @@ export function ProjectRow({ project }: { project: Project }) {
         </span>
         <span className="text-paper-muted">{project.oneLiner}</span>
         <span className="text-sm text-paper-muted">{project.year}</span>
-      </Link>
+      </ProjectRowLink>
     </li>
   );
 }
