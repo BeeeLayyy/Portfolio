@@ -31,24 +31,11 @@ export default function Home() {
             {/* Starts at 1% opacity so Largest Contentful Paint counts at first paint (see globals.css). */}
             <h1
               id="hero-title"
-              className="font-serif text-[clamp(2.25rem,4.4vw,4.75rem)] leading-[1.04] tracking-tight md:col-span-7 md:col-start-4"
+              className="font-serif text-[clamp(2.75rem,5.6vw,6rem)] leading-[1] tracking-tight md:col-span-9 md:col-start-4"
             >
-              {/* The headshot rides in the first line like a word (D18).
-                  Decorative here: the name is right after it. */}
-              <span className="hero-word mr-[0.25em] align-[-0.12em]" style={{ "--i": 0 } as CSSProperties}>
-                <Image
-                  src={site.headshot.src}
-                  alt=""
-                  width={160}
-                  height={160}
-                  sizes="(min-width: 768px) 80px, 48px"
-                  className="inline-block size-[0.92em] rounded-full object-cover object-[50%_18%] ring-2 ring-accent/60"
-                  preload
-                />
-              </span>
               {words.map((word, i) => (
                 <span key={i}>
-                  <span className="hero-word" style={{ "--i": i + 1 } as CSSProperties}>
+                  <span className="hero-word" style={{ "--i": i } as CSSProperties}>
                     {word}
                   </span>
                   {i < words.length - 1 && " "}
@@ -81,7 +68,7 @@ export default function Home() {
         {/* Lusion's ribbon: one line that draws itself as you scroll down. */}
         <svg
           aria-hidden
-          className="ribbon pointer-events-none absolute inset-0 h-full w-full text-accent opacity-50"
+          className="ribbon pointer-events-none absolute inset-0 h-full w-full text-accent opacity-35"
           viewBox="0 0 100 1000"
           preserveAspectRatio="none"
           fill="none"
@@ -98,27 +85,45 @@ export default function Home() {
 
         <div className="relative">
           <Container className="grid gap-10 py-24 md:grid-cols-12 md:py-36">
-            <RevealText
-              as="h2"
-              lines={site.approach.title}
-              className="text-[clamp(3rem,8vw,7rem)] leading-[1] font-medium tracking-tight md:col-span-8"
-            />
-            <div className="md:col-span-5 md:col-start-8">
-              <div className="group mb-8 w-48 overflow-hidden rounded-media ring-1 ring-rule md:w-56" data-reveal="scale">
+            {/* Words on the left, Brandon on the right: the title, a short
+                intro, four quick facts and a link fill the left column, so
+                the portrait never floats in empty space. */}
+            <div className="md:col-span-7">
+              <RevealText
+                as="h2"
+                lines={site.approach.title}
+                className="text-[clamp(3rem,7vw,6.5rem)] leading-[1] font-medium tracking-tight"
+              />
+              <RevealText as="p" mode="fade-words" text={site.approach.line} className="mt-10 max-w-xl text-lg" />
+              <dl className="mt-10 grid max-w-xl grid-cols-2 border-t border-rule">
+                {site.approach.facts.map((fact, i) => (
+                  <div
+                    key={fact.label}
+                    className="border-b border-rule py-4 odd:pr-4 even:border-l even:pl-4"
+                    data-reveal="rise"
+                    style={{ "--i": i } as CSSProperties}
+                  >
+                    <dt className="font-mono text-sm tracking-wide text-ink-muted uppercase">{fact.label}</dt>
+                    <dd className="mt-1">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-10">
+                <ButtonLink href={site.approach.cta.href} variant="secondary">
+                  {site.approach.cta.label}
+                </ButtonLink>
+              </div>
+            </div>
+            <div className="md:col-span-5 md:col-start-8 md:pt-4">
+              <div className="group max-w-sm overflow-hidden rounded-media ring-1 ring-rule md:max-w-none" data-reveal="scale">
                 <Image
                   src={site.headshot.src}
                   alt={site.headshot.alt}
                   width={800}
                   height={1000}
-                  sizes="224px"
-                  className="aspect-[4/5] object-cover transition-transform duration-(--duration-reveal) ease-out-soft pointer-fine:group-hover:scale-[1.04]"
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="aspect-[4/5] w-full object-cover object-top transition-transform duration-(--duration-reveal) ease-out-soft pointer-fine:group-hover:scale-[1.04]"
                 />
-              </div>
-              <RevealText as="p" mode="fade-words" text={site.approach.line} className="text-lg" />
-              <div className="mt-8">
-                <ButtonLink href={site.approach.cta.href} variant="secondary">
-                  {site.approach.cta.label}
-                </ButtonLink>
               </div>
             </div>
             <div className="hero-split grid border-t border-rule md:col-span-12 md:grid-cols-2">

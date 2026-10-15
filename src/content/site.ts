@@ -5,15 +5,20 @@ export const site = {
   url: "https://brandonle.site", // D7. Share links and the share image use it.
   description:
     "Finance and MIS at Villanova. Work, projects, and what I'm building now.",
-  // Home hero title (D18): short, with a finance pun. "Portfolio" is both
-  // the site and an investment portfolio; "diversified" is finance, data
-  // and basketball. Brandon's headshot sits inline before it.
-  heroLine: "Brandon Le's portfolio, fully diversified.",
+  // Home hero title (D18, shortened Oct 15).
+  heroLine: "Brandon Le's portfolio",
   // The section after the hero: a two-line title, a short paragraph, a link.
   approach: {
     title: ["Finance,", "built on data"],
     line: "I study Finance and MIS at Villanova and graduate in May 2027. I like the work between the numbers and the systems that produce them.",
     cta: { label: "About me", href: "/about" },
+    // Quick facts beside the portrait, ledger style.
+    facts: [
+      { label: "Now", value: "Revenue operations, SAP" },
+      { label: "Before", value: "Global Finance, JPMorgan Chase" },
+      { label: "Building", value: "Courtside, NBA analytics" },
+      { label: "Graduating", value: "May 2027, Villanova" },
+    ],
   },
   // Closing section on every page but Contact.
   end: {

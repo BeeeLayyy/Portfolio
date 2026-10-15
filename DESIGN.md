@@ -98,7 +98,6 @@ Phones, touch screens and reduced motion get a still instead: `public/images/her
 
 Behind every page: two soft pools of blue light (`--color-accent`, `--color-scene-cobalt`, `--color-accent-strong` at 14 to 18%) drift on long loops (`--duration-ambient`, 46s) and slide up as you scroll, over a faint dot grid (ink at 9%) that creeps one tile per loop. Only transforms animate, so it doesn't repaint the page; reduced motion holds it still. Glows stay faint enough that muted text keeps over 7:1 contrast. Component: `src/components/motion/backdrop.tsx`.
 
-## Home hero title (D18)
+## Home hero title and intro section (D18)
 
-"Brandon Le's portfolio, fully diversified." with Brandon's headshot as a round image inside the first line, rising in with the words. A larger portrait sits beside the intro paragraph in the next section.
-
+The hero title is just "Brandon Le's portfolio", large, in Newsreader. The next section is two columns: on the left the "Finance, built on data" title, a short intro, four quick facts (Now, Before, Building, Graduating: mono labels over a ruled grid, like a ledger) and the About link; on the right Brandon's portrait, which zooms slightly on hover. The facts live in `site.approach.facts`.
