@@ -25,6 +25,6 @@ Built with Claude Code, organized like a small product team: three lanes (conten
 **AI tooling in this repo**
 
 - **MCP servers** (`.mcp.json`): [21st.dev](https://21st.dev) for UI components, and [Motion](https://motion.dev)'s hosted servers for animation docs and performance audits.
-- **Skills** (`.claude/skills/`): [Emil Kowalski's design engineering skills](https://github.com/emilkowalski/skills) for animation craft, UI stress tests and mobile polish, plus the [Motion AI Kit](https://github.com/motiondivision/ai-kit).
+- **Skills** (`.claude/skills/`): [Emil Kowalski's design engineering skills](https://github.com/emilkowalski/skills) for animation craft, UI stress tests and mobile polish, the [Motion AI Kit](https://github.com/motiondivision/ai-kit), and [Impeccable](https://github.com/pbakaus/impeccable) for design critique and polish.
 - **Agents** (`.claude/agents/`): `motion-reviewer`, which scores animation performance before release.
 - **Design system:** `DESIGN.md`. Every color, size and timing comes from tokens in `src/app/globals.css`.

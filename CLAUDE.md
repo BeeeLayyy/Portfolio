@@ -50,6 +50,9 @@ Use these instead of freehanding. Everything here is installed in this repo, so 
 | QA | `review-animations`, `animation-performance` | Gate for every motion change |
 | QA | `motion-reviewer` agent (`.claude/agents/`) | MotionScore audit across the whole site at the Phase 3 gate |
 | QA | `break-ui` | Stress-test components with long names, empty states, extreme content |
+| All | `impeccable` (`/impeccable <command> <target>`) | Design commands on a page or component: `critique` and `audit` (QA), `polish`, `typeset`, `layout`, `quieter`/`bolder`, `distill`, `harden`, `animate`, `delight` (frontend), `clarify` (copy). Example: `/impeccable critique src/app/page.tsx` |
+
+`impeccable` reads our `DESIGN.md` for context. Use it for refinement only: it must keep the Banker's lamp palette, fonts and copy. Never let it "redesign" or rewrite `DESIGN.md` unless Brandon asks. Its launcher downloads a helper program once from the author's GitHub releases and checks its checksum before running it.
 
 Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (toasts).
 
@@ -57,7 +60,7 @@ Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `as
 
 - Anything from 21st.dev, Motion or an animation skill gets restyled with our tokens and `DESIGN.md`. Extend `--ease-out-soft` and `--duration-*`; never add a parallel set of colors, fonts or easings.
 - Every animation respects reduced motion.
-- Installed skills come from `emilkowalski/skills` (pinned in `skills-lock.json`) and the Motion AI Kit (`npx motion-ai`). Update them with `npx skills update` and by re-running `npx motion-ai`.
+- Installed skills come from `emilkowalski/skills` (pinned in `skills-lock.json`) and the Motion AI Kit (`npx motion-ai`), and `pbakaus/impeccable` (pinned in `skills-lock.json`). Update them with `npx skills update` and by re-running `npx motion-ai`.
 
 ## Decisions so far
 
