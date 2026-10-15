@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -24,6 +24,17 @@ const plexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
+  // The share image is app/opengraph-image.png. Its absolute URL comes from
+  // Vercel's own domain until D7 picks a custom one; then set metadataBase.
+  openGraph: { siteName: site.name, type: "website", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
+};
+
+// Phone status bar matches the page. The site is dark only, so one color:
+// --color-ledger in globals.css (metadata can't read CSS variables).
+export const viewport: Viewport = {
+  themeColor: "#0f1f1a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

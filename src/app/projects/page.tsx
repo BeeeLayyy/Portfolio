@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { pageDescriptions } from "@/content/site";
 import { ProjectRow } from "@/components/content-blocks";
 import { Container, PageHeader } from "@/components/ui";
 import { projects } from "@/content/projects";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = { title: "Projects", description: pageDescriptions.projects };
 
 export default function ProjectsPage() {
   return (

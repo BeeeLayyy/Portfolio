@@ -28,6 +28,15 @@ export const site = {
   toolkit: ["SQL", "Python", "Excel", "Power BI", "Tableau", "Alteryx", "Databricks", "SAP S/4HANA", "Salesforce", "Figma", "PowerPoint", "Claude"],
 };
 
+// One line per page for search results and link previews.
+export const pageDescriptions = {
+  about: "Brandon Le, a Finance and MIS senior at Villanova: background, goals and toolkit.",
+  experience: "Internships at JPMorgan Chase and SAP, across finance and revenue operations.",
+  projects: "Courtside, an NBA analytics site Brandon planned, designed and built.",
+  now: "What Brandon is focused on this season.",
+  contact: "Email or LinkedIn. Open to finance, product and data roles.",
+};
+
 export const nav: Link[] = [
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/experience" },

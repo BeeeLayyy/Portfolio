@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, PageHeader, Section, Tag } from "@/components/ui";
 import { goals } from "@/content/now";
-import { site } from "@/content/site";
+import { site, pageDescriptions } from "@/content/site";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = { title: "About", description: pageDescriptions.about };
 
 export default function AboutPage() {
   return (

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { pageDescriptions } from "@/content/site";
 import { NowCard } from "@/components/content-blocks";
 import { Container, PageHeader } from "@/components/ui";
 import { now, nowUpdated } from "@/content/now";
 
-export const metadata: Metadata = { title: "Now" };
+export const metadata: Metadata = { title: "Now", description: pageDescriptions.now };
 
 export default function NowPage() {
   return (

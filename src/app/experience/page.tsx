@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { pageDescriptions } from "@/content/site";
 import { RoleItem } from "@/components/content-blocks";
 import { Container, PageHeader } from "@/components/ui";
 import { roles } from "@/content/experience";
 
-export const metadata: Metadata = { title: "Experience" };
+export const metadata: Metadata = { title: "Experience", description: pageDescriptions.experience };
 
 export default function ExperiencePage() {
   return (

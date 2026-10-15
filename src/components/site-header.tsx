@@ -23,7 +23,7 @@ export function SiteHeader() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`inline-block py-2 ${
+                    className={`inline-block py-2 select-none ${
                       active
                         ? "text-lamp"
                         : "text-paper-muted transition-colors duration-(--duration-quick) hover:text-paper"

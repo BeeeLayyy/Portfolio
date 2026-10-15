@@ -59,6 +59,23 @@ html {
   background: var(--color-ledger);
   color: var(--color-paper);
   color-scheme: dark;
+  -webkit-tap-highlight-color: transparent; /* no gray flash on tap; links get :active below */
+  -webkit-text-size-adjust: 100%; /* no font inflation in landscape */
+}
+
+/* Fire taps immediately: these never double-tap-zoom. */
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Touch press feedback for links, replacing the tap highlight removed above.
+   Buttons (ButtonLink) have their own scale-down. Touch only, so a mouse
+   click doesn't flicker. */
+@media (hover: none) {
+  a:active {
+    opacity: 0.7;
+  }
 }
 
 body {

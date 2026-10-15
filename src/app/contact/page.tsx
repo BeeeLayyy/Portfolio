@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ButtonLink, Container, PageHeader } from "@/components/ui";
-import { site, socials } from "@/content/site";
+import { site, socials, pageDescriptions } from "@/content/site";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = { title: "Contact", description: pageDescriptions.contact };
 
 export default function ContactPage() {
   return (
