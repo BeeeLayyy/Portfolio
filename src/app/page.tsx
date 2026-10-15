@@ -1,4 +1,5 @@
 import { NowCard, ProjectRow, RoleItem } from "@/components/content-blocks";
+import { HeroPlayed } from "@/components/hero-played";
 import { ButtonLink, Container, Section } from "@/components/ui";
 import { roles } from "@/content/experience";
 import { now } from "@/content/now";
@@ -11,20 +12,26 @@ export default function Home() {
   return (
     <>
       {/* Split hero: finance in serif on the left, data in sans on the right.
-          Phase 3 animates the name and lets the divide follow the cursor. */}
+          The entrance (rise-in, fade-in) lives in globals.css. */}
       <section aria-labelledby="hero-name" className="relative border-b border-rule">
         <h1
           id="hero-name"
           className="overflow-hidden whitespace-nowrap px-6 pt-16 pb-8 text-center font-serif text-display md:pt-24 md:pb-4"
         >
-          {site.name}
+          {site.name.split(" ").map((word, i) => (
+            <span key={word} className="hero-word" style={{ "--i": i } as React.CSSProperties}>
+              {word}
+              {i < site.name.split(" ").length - 1 && "\u00a0"}
+            </span>
+          ))}
         </h1>
+        <HeroPlayed />
         <div className="grid md:grid-cols-2">
-          <div className="border-b border-rule p-6 md:border-r md:border-b-0 md:p-16">
+          <div className="hero-half border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 0 } as React.CSSProperties}>
             <h2 className="font-serif text-3xl italic">{site.finance.title}</h2>
             <p className="mt-4 max-w-sm text-paper-muted">{site.finance.line}</p>
           </div>
-          <div className="p-6 md:p-16">
+          <div className="hero-half p-6 md:p-16" style={{ "--i": 1 } as React.CSSProperties}>
             <h2 className="font-sans text-3xl font-medium tracking-tight">{site.data.title}</h2>
             <p className="mt-4 max-w-sm text-paper-muted">{site.data.line}</p>
           </div>

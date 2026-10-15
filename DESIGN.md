@@ -44,7 +44,11 @@ Radius follows role, not one value everywhere: `rounded-tag` 2px (skill tags), `
 | `--duration-base` | 280ms | Menus, toggles |
 | `--duration-slow` | 600ms | Section reveals |
 | `--duration-hero` | 1100ms | The one orchestrated hero moment |
+| `--stagger` | 60ms | Gap between items entering in sequence |
+| `--hero-follow` | 200ms | When the hero halves start, after the name |
 | `ease-out-soft` | cubic-bezier(0.16, 1, 0.3, 1) | Things arriving |
 | `ease-in-out-soft` | cubic-bezier(0.65, 0, 0.35, 1) | Things moving across |
 
-Rules: one orchestrated moment per page; everything else moves only in answer to the visitor (hover, scroll, click). Reduced-motion settings turn every animation into an instant change (handled globally in `globals.css`).
+Rules: one orchestrated moment per page; everything else moves only in answer to the visitor (hover, scroll, click). Reduced-motion settings turn every animation into an instant change, with no delay (handled globally in `globals.css`).
+
+In use: the home hero entrance (name rises in word by word, halves fade in, once per session), a 280ms fade and 8px rise when a new page opens from a link (not on first load, nothing on exit), and buttons shrink to 97% while pressed.

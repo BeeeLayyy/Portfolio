@@ -50,7 +50,7 @@ export function ButtonLink({ href, children, variant = "primary" }: {
   variant?: "primary" | "secondary";
 }) {
   const base =
-    "inline-block rounded-control px-5 py-3 font-medium transition-colors duration-(--duration-quick) ease-out-soft";
+    "inline-block rounded-control px-5 py-3 font-medium transition-[color,background-color,border-color,scale] duration-(--duration-quick) ease-out-soft active:scale-[0.97] motion-reduce:active:scale-100";
   const styles =
     variant === "primary"
       ? "bg-lamp text-ledger hover:bg-paper"

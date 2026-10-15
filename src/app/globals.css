@@ -51,6 +51,8 @@
   --duration-base: 280ms;   /* menus, toggles */
   --duration-slow: 600ms;   /* page and section reveals */
   --duration-hero: 1100ms;  /* the one orchestrated hero moment */
+  --stagger: 60ms;          /* gap between items entering in sequence */
+  --hero-follow: 200ms;     /* when the hero halves start, after the name */
 }
 
 html {
@@ -83,8 +85,55 @@ body {
   *::before,
   *::after {
     animation-duration: 1ms !important;
+    animation-delay: 0ms !important; /* no invisible wait before the instant change */
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Home hero entrance, the one orchestrated moment (about 860ms in all).
+   The name rises in word by word, then the two halves fade in.
+   Plays once per session: once it has played, <html data-hero="played">
+   turns it off (set by HeroPlayed and an inline script in the layout). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.hero-word {
+  display: inline-block;
+  animation: rise-in var(--duration-slow) var(--ease-out-soft) both;
+  animation-delay: calc(var(--i) * var(--stagger));
+}
+
+.hero-half {
+  animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
+  animation-delay: calc(var(--hero-follow) + var(--i) * var(--stagger));
+}
+
+:root[data-hero="played"] .hero-word,
+:root[data-hero="played"] .hero-half {
+  animation: none;
+}
+
+/* Page change: new content settles in. Client navigations only (the first
+   load has the hero instead), and nothing animates on the way out. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.page-enter {
+  animation: page-enter var(--duration-base) var(--ease-out-soft) both;
 }

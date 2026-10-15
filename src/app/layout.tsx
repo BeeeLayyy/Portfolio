@@ -31,7 +31,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${newsreader.variable} ${plexSans.variable} h-full antialiased`}
+      suppressHydrationWarning // the script below may set data-hero before React loads
     >
+      <head>
+        {/* Skip the hero entrance if it already played this session. Runs
+            before first paint, so the name never flashes in twice. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("hero-played"))document.documentElement.dataset.hero="played"}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <a
           href="#main"
