@@ -80,7 +80,7 @@ In use (D16, modeled on lusion.co):
 
 ## 3D hero scene (D15, made personal in D17)
 
-The Home card is Brandon's world as glossy 3D objects: dollar signs, gold coins and coin stacks (finance), bar and pie charts, a percent sign and an up arrow (data), curly braces (MIS), a graduation cap (Villanova) and a basketball (Courtside). The `$`, `%` and `{ }` are IBM Plex Sans Bold glyphs, extruded (`src/components/hero-scene/glyphs.ts`).
+The Home card is Brandon's world as glossy 3D objects: dollar signs, gold coins and coin stacks (finance), bar and pie charts, a percent sign and an up arrow (data), curly braces (MIS), a graduation cap (Villanova) and a basketball (Courtside). The `$`, `%` and `{ }` are IBM Plex Sans Bold glyphs, extruded (`src/components/hero-scene/glyphs.ts`). About 40 pieces, large and packed toward the middle so they overlap and fill the card edge to edge, with the background barely showing, as on lusion.co.
 
 | Token | Value | Use |
 | --- | --- | --- |

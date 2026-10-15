@@ -70,7 +70,7 @@ const SPRING = 2.2; // pull back home
 const DAMPING = 1.1; // velocity lost per second: low, so pieces fly and wobble
 const RESTITUTION = 0.8; // bounciness when pieces hit each other (1 = no loss)
 const MAX_SPEED = 26;
-const BOUNDS = new Vector3(15, 6, 5); // soft walls: pieces bounce back inside
+const BOUNDS = new Vector3(14, 6, 5); // soft walls: pieces bounce back inside
 const PAINT_SCALE = 0.25; // the warp trail is drawn at a quarter resolution
 
 function token(name: string) {
@@ -118,7 +118,7 @@ export function mountHeroScene(
   scene.add(key, rim);
 
   const camera = new PerspectiveCamera(32, 1, 0.1, 100);
-  camera.position.set(0, 0, 17);
+  camera.position.set(0, 0, 15);
 
   // --- Materials: glossy white and black, rubbery cobalt, polished gold.
   const physical = (color: string, roughness: number, extra: Partial<MeshPhysicalMaterial> = {}) =>
@@ -257,7 +257,8 @@ export function mountHeroScene(
     "dollar", "dollar", "dollar", "dollar", "dollar", "dollar", "coin", "coin", "coin", "coin",
     "stack", "stack", "stack", "basketball", "basketball", "cap", "cap", "bars", "bars", "bars",
     "pie", "pie", "percent", "percent", "arrow", "arrow", "braces", "braces", "coin", "dollar",
-    "basketball", "cap", "dollar", "coin",
+    "basketball", "cap", "dollar", "coin", "dollar", "coin", "stack", "pie", "bars", "percent",
+    "dollar", "coin",
   ];
 
   const group = new Group();
@@ -265,9 +266,13 @@ export function mountHeroScene(
   const random = seeded(11);
   const pieces: Piece[] = kinds.map((kind) => {
     const object = builders[kind](random);
-    object.scale.multiplyScalar(1.3); // big and overlapping, like Lusion's frame
+    // Big, packed and overlapping, so the background barely shows (Lusion's frame).
+    object.scale.multiplyScalar(1.85);
     const size = new Box3().setFromObject(object).getSize(new Vector3());
-    const home = new Vector3((random() - 0.5) * 27, (random() - 0.5) * 9, (random() - 0.5) * 8 - 1.5);
+    // Homes bunch toward the middle (two randoms averaged), deeper pieces sit
+    // further back, so the cluster reads as one dense, layered mass.
+    const spread = () => (random() + random() - 1);
+    const home = new Vector3(spread() * 18, spread() * 6, spread() * 6 - 1.5);
     object.position.copy(home);
     object.rotation.set((random() - 0.5) * 1.6, (random() - 0.5) * 2.4, (random() - 0.5) * 1.2);
     group.add(object);
@@ -290,7 +295,7 @@ export function mountHeroScene(
         const b = pieces[j];
         gap.copy(a.home).sub(b.home);
         const distance = gap.length();
-        const overlap = (a.radius + b.radius) * 0.7 - distance;
+        const overlap = (a.radius + b.radius) * 0.6 - distance;
         if (overlap > 0 && distance > 0.001) {
           gap.multiplyScalar((overlap * 0.5) / distance);
           a.home.add(gap);
@@ -398,7 +403,7 @@ export function mountHeroScene(
     camera.aspect = width / height;
     // Pull back a little on narrower cards, but let the sides crop (like
     // Lusion's) rather than shrinking the pieces to fit.
-    camera.position.z = 17 * Math.min(1.35, Math.max(1, 2.2 / camera.aspect));
+    camera.position.z = 15 * Math.min(1.35, Math.max(1, 2.2 / camera.aspect));
     camera.updateProjectionMatrix();
   }
   resize();
@@ -499,7 +504,7 @@ export function mountHeroScene(
         const b = pieces[j];
         normal.copy(a.object.position).sub(b.object.position);
         const distance = normal.length();
-        const overlap = (a.radius + b.radius) * 0.7 - distance;
+        const overlap = (a.radius + b.radius) * 0.6 - distance;
         if (overlap <= 0 || distance < 0.001) continue;
         normal.divideScalar(distance);
         a.object.position.addScaledVector(normal, overlap * 0.5);
