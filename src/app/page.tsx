@@ -23,13 +23,15 @@ export default function Home() {
 
   return (
     <>
+      {/* Full width like Lusion's first screen: the title over the left of
+          center, then the card filling the rest of the screen. */}
       <section aria-labelledby="hero-title" className="flex min-h-[calc(100svh-var(--spacing-header))] flex-col">
-        <Container className="pt-8 md:pt-10">
+        <div className="mx-auto w-full max-w-hero px-4 pt-4 md:px-8 md:pt-2">
           <div className="md:grid md:grid-cols-12">
             {/* Starts at 1% opacity so Largest Contentful Paint counts at first paint (see globals.css). */}
             <h1
               id="hero-title"
-              className="font-serif text-[clamp(1.75rem,2.6vw,2.75rem)] leading-[1.15] md:col-span-7 md:col-start-4"
+              className="font-serif text-[clamp(1.75rem,2.2vw,2.75rem)] leading-[1.12] md:col-span-6 md:col-start-4"
             >
               {words.map((word, i) => (
                 <span key={i}>
@@ -41,13 +43,13 @@ export default function Home() {
               ))}
             </h1>
           </div>
-        </Container>
+        </div>
         <HeroPlayed />
-        <Container className="flex flex-1 flex-col pt-8 md:pt-10">
+        <div className="mx-auto flex w-full max-w-hero flex-1 flex-col px-4 pt-6 md:px-8 md:pt-8">
           <div className="hero-rise flex min-h-0 flex-1 flex-col">
-            <HeroScene className="aspect-[4/3] md:aspect-auto md:min-h-[22rem] md:flex-1" />
+            <HeroScene className="aspect-[4/5] sm:aspect-[4/3] md:aspect-auto md:min-h-[26rem] md:flex-1" />
           </div>
-          <div className="relative flex h-16 items-center justify-between md:h-20" aria-hidden>
+          <div className="relative flex h-14 items-center justify-between md:h-16" aria-hidden>
             <span className="cross" />
             <span className="cross hidden md:block" />
             <span className="cue-window absolute left-1/2 -translate-x-1/2 font-mono text-sm tracking-wide text-ink-muted uppercase">
@@ -59,7 +61,7 @@ export default function Home() {
             <span className="cross hidden md:block" />
             <span className="cross" />
           </div>
-        </Container>
+        </div>
       </section>
 
       <div className="relative">

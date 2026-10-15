@@ -14,12 +14,22 @@ import { useEffect, useRef, useState } from "react";
 // a canvas never counts as Largest Contentful Paint, so the name, which paints
 // at once, stays the LCP. As an <img> the card was the largest thing on a
 // phone screen and Lighthouse mobile fell from the high 90s to the 80s.
-const still = getImageProps({
+
+// Two stills: wide for the desktop card, tall for the phone card. Both are
+// captured from the live scene (see the D17 notes in DESIGN.md).
+const stillWide = getImageProps({
   src: "/images/hero-scene.webp",
   alt: "",
-  width: 2144,
-  height: 922,
-  sizes: "(min-width: 1280px) 1072px, 100vw",
+  width: 2304,
+  height: 909,
+  sizes: "(min-width: 1920px) 1856px, 100vw",
+}).props;
+const stillTall = getImageProps({
+  src: "/images/hero-scene-phone.webp",
+  alt: "",
+  width: 895,
+  height: 1123,
+  sizes: "100vw",
 }).props;
 
 export function HeroScene({ className = "aspect-[4/3] md:aspect-[21/9]" }: { className?: string }) {
@@ -29,10 +39,11 @@ export function HeroScene({ className = "aspect-[4/3] md:aspect-[21/9]" }: { cla
   const [live, setLive] = useState(false);
 
   // Draw the still, cropped to cover the card, and redraw when the card's
-  // shape changes (4:3 on phones, 21:9 from md up).
+  // shape changes (tall on phones, wide from md up).
   useEffect(() => {
     const canvas = stillRef.current;
     if (!canvas) return;
+    const still = canvas.clientWidth / Math.max(1, canvas.clientHeight) < 1.2 ? stillTall : stillWide;
     const image = new window.Image();
     image.sizes = still.sizes ?? "";
     image.srcset = still.srcSet ?? "";

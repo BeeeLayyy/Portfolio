@@ -23,6 +23,11 @@
   --color-loss: #ff6b6b;          /* data only: down, errors (7.0:1); never decoration */
   --color-critical: #ff9a3d;      /* data only: warning (9.2:1) */
   --color-flat: #788fa6;          /* data only: unchanged, baseline (5.8:1) */
+  /* 3D hero scene only (D17): the objects' paint. Brighter than the UI,
+     like Lusion's, and never used for text or interface. */
+  --color-scene-cobalt: #2448ff;  /* rubbery blue: dollar signs, charts */
+  --color-scene-gold: #f4b63d;    /* coins */
+  --color-scene-orange: #f26b1d;  /* the basketball (Courtside) */
 
   /* Type families: the split hero's two sides */
   --font-serif: var(--font-newsreader), Georgia, serif;     /* finance */
@@ -57,6 +62,7 @@
 
   /* Layout */
   --spacing-header: 4.5rem; /* fixed header height; main is padded by it */
+  --container-hero: 120rem; /* the wide hero and header row (Lusion's full-bleed card) */
 
   /* Motion */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);  /* things arriving */

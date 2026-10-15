@@ -54,7 +54,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-50" data-scrolled={scrolled || open}>
-      <div className="mx-auto flex h-header max-w-6xl items-center justify-between gap-4 px-6 md:px-10">
+      <div className="mx-auto flex h-header max-w-hero items-center justify-between gap-4 px-4 md:px-8">
         <Link href="/" className="roll-host font-serif text-xl whitespace-nowrap">
           <TextRoll>{site.name}</TextRoll>
         </Link>
