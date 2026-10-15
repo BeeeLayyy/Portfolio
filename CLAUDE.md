@@ -68,7 +68,7 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 
 ## Where things stand (Oct 15, 2026)
 
-- Phases 0 to 3 done and on `main` (Phase 3 merged Oct 15, after Brandon checked it on his phone and with VoiceOver).
+- All five phases (0 to 4) done. The site is live at https://brandonle.site (www redirects to it), with Vercel Analytics and Speed Insights on. Live Lighthouse mobile: Home 98 to 99, Courtside 96, 100 for accessibility, best practices and SEO.
 - Phase 3 covered: hero entrance, page-change fade, button press, project-row hover preview, hero split hover; phone polish; page descriptions, share image and icons; review-animations, WCAG 2.2 AA review and design critique, each with fixes; Lighthouse mobile 93 to 97 performance and 100 for accessibility, best practices and SEO.
 - `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
 - Fonts: Newsreader italic is a separate, non-preloaded font (`font-serif-italic`), and the hero's `rise-in` starts at 1% opacity, not 0, so Largest Contentful Paint counts at first paint. Both are deliberate; see the comments in `layout.tsx` and `globals.css`.
@@ -76,4 +76,5 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 ## Next up
 
 1. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot (desktop and the phone row both use it).
-2. Phase 4 (in progress): brandonle.site bought, `metadataBase` set, Vercel Analytics and Speed Insights on. Left: confirm the domain loads over HTTPS once DNS spreads, www redirect, share card in LinkedIn and iMessage, a visit in Analytics, phone smoke test, then Brandon adds the URL to LinkedIn, resume and email signature.
+2. Keep Now current (it says "Updated October 2026") and add projects as they ship; each new project needs an image for the hover preview and phone row.
+3. brandonle.site renews at $27 a year in October 2027.
