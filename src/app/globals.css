@@ -897,7 +897,9 @@ body {
 .cue-lines {
   display: flex;
   flex-direction: column;
-  animation: cue-roll 2.4s var(--ease-in-out-soft) infinite;
+  /* Two rolls (under 5s) then still: WCAG 2.2.2 asks that motion which
+     starts on its own and runs longer than 5 seconds can be stopped. */
+  animation: cue-roll 2.4s var(--ease-in-out-soft) 2;
 }
 
 .cue-lines span {
@@ -1012,7 +1014,7 @@ body {
   display: flex;
   flex-direction: column-reverse;
   translate: 0 -50%;
-  animation: arrow-roll 2.4s var(--ease-in-out-soft) infinite;
+  animation: arrow-roll 2.4s var(--ease-in-out-soft) 2;
 }
 
 /* --- Footer links: an underline that draws from the left on hover. --- */
@@ -1159,4 +1161,3 @@ html.lenis body {
     animation-timeline: scroll(root);
   }
 }
-

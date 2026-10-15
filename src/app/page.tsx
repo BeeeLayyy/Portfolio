@@ -148,7 +148,6 @@ export default function Home() {
               <Link
                 href={`/projects/${showcase.slug}`}
                 className="group roll-host relative my-6 block"
-                aria-label={`${showcase.title}: ${showcase.oneLiner}`}
               >
                 <div className="showcase-media relative aspect-[16/9] overflow-hidden rounded-media bg-surface ring-1 ring-rule">
                   <Image

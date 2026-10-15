@@ -32,6 +32,9 @@ export function RevealText({
               {word}
             </Word>
           ))}
+          {/* A real space between lines, so screen readers don't run
+              "work" and "together" into one word. */}
+          {lines && r < rows.length - 1 && " "}
         </span>
       ))}
     </Tag>

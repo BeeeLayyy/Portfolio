@@ -24,7 +24,7 @@ export function EndSection() {
         <h2 id="end-title" className="mt-6 text-[clamp(3.5rem,11vw,10rem)] leading-[0.95] font-medium tracking-tight">
           <Link href="/contact" className="group inline-block" data-reveal="words">
             <span className="relative block">
-              <RevealText text={site.end.title[0]} />
+              <RevealText text={site.end.title[0]} />{" "}
               <span aria-hidden className="end-rule absolute right-[0.1em] bottom-[0.02em] left-[0.1em] h-[0.06em] bg-ink" />
             </span>
             <span className="relative block">
