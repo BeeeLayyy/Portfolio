@@ -10,7 +10,7 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         title="Projects"
-        intro="Things I've built on my own time, mostly where finance and data meet."
+        intro="What I build on my own time, planned and shipped like a real product."
       />
       <Container className="pb-24">
         <ul className="border-t border-rule">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container, Tag } from "@/components/ui";
+import { ButtonLink, Container, Tag } from "@/components/ui";
 import { getProject, projects } from "@/content/projects";
 
 // Build one static page per project at build time.
@@ -50,6 +50,15 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             </dd>
           </div>
         </dl>
+        {project.links.length > 0 && (
+          <div className="mt-8 flex flex-wrap gap-4">
+            {project.links.map((l, i) => (
+              <ButtonLink key={l.href} href={l.href} variant={i === 0 ? "primary" : "secondary"}>
+                {l.label}
+              </ButtonLink>
+            ))}
+          </div>
+        )}
       </Container>
 
       {/* Placeholder for the project's lead image or video (Phase 2 assets). */}

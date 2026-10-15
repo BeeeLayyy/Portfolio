@@ -1,48 +1,25 @@
 import type { Project } from "./types";
 
-// Placeholder write-ups. Which projects lead, and how each is framed, is
-// decision D10 in the build plan (due by Phase 2).
-
-const placeholder = "Placeholder. Real write-up comes in Phase 2.";
+// D10 (Oct 15): Courtside is the one featured project.
+// TODO after the Oct 28 public launch: swap the link to the real domain and
+// add real numbers (weekly returning visitors) to `outcome`.
 
 export const projects: Project[] = [
   {
     slug: "courtside",
     title: "Courtside",
-    oneLiner: "NBA scouting and analytics web app.",
-    role: "Designer and developer",
+    oneLiner:
+      "An NBA analytics site that turns official stats into scouting reports, shot charts and live win chances.",
+    role: "Product, design and build",
     year: "2026",
-    stack: ["Next.js"],
-    problem: placeholder,
-    built: placeholder,
-    outcome: placeholder,
-    links: [],
-    featured: true,
-  },
-  {
-    slug: "pulse",
-    title: "Pulse",
-    oneLiner: "Stock market dashboard.",
-    role: "Designer and developer",
-    year: "2026",
-    stack: [],
-    problem: placeholder,
-    built: placeholder,
-    outcome: placeholder,
-    links: [],
-    featured: true,
-  },
-  {
-    slug: "task-board",
-    title: "Task Board",
-    oneLiner: "Personal task dashboard desktop app.",
-    role: "Designer and developer",
-    year: "2026",
-    stack: [],
-    problem: placeholder,
-    built: placeholder,
-    outcome: placeholder,
-    links: [],
+    stack: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
+    problem:
+      "Good NBA analysis is scattered across box scores, paywalled sites and spreadsheets. I wanted one place where a fan could look up any player or team and understand what the numbers actually say, the way a scout would.",
+    built:
+      "A site built on real stats.nba.com data: player pages with shot charts, recent form and players with similar profiles, team scouting reports, rankings, lineup and on/off splits, projections and playoff odds, plus live scores with win chances during games. I ran it like a product launch, with an audit of the live site and code, an eight-milestone plan, and a readiness tracker covering the 17 areas a professional team checks before going public. I build it with Claude Code, using teams of agents working in parallel branches.",
+    outcome:
+      "Courtside launches with the NBA season. Opening night on October 20 is the first real test of the live features, and the public launch follows on October 28. Analytics are privacy-first, with no cookies and no IP addresses, and the number I track is fans who come back each week.",
+    links: [{ label: "Visit Courtside", href: "https://courtside.higgsfield.app" }],
     featured: true,
   },
 ];
