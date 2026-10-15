@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
   return project ? { title: project.title, description: project.oneLiner } : {};
 }
 
-// A project page in the Home style (D19): a big title with the one-liner and
-// facts beside it, the lead screenshot at full width, then numbered chapters
+// A project page in the Home style (D19): a big title with the one-liner
+// under it and the facts beside it, the lead screenshot at full width, then numbered chapters
 // with the label pinned on the left and the story in large type on the
 // right, so no column sits empty. Layout only: the words come from
 // src/content/projects.ts.
@@ -44,15 +44,20 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   return (
     <article>
       <Container className="pt-10 pb-12 md:pt-16">
-        <Link href="/projects" className="underline-draw inline-block py-1 text-sm text-ink-muted hover:text-accent">
+        <Link
+          href="/projects"
+          className="underline-draw inline-block py-1 text-lg font-medium text-ink hover:text-accent"
+        >
           All projects
         </Link>
-        <div className="mt-10 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <p className="font-mono text-sm tracking-wide text-ink-muted uppercase">
-              Project <span aria-hidden>·</span> {project.year}
-            </p>
-            <h1 className="mt-4 font-serif text-[clamp(3.5rem,11vw,9rem)] leading-[0.95] tracking-tight">
+        {/* Title, then the one-liner under it on the left; the facts sit on
+            the right, their top rule level with the title. */}
+        <div className="mt-12 grid gap-x-10 gap-y-8 md:mt-20 md:grid-cols-12">
+          <p className="font-mono text-sm tracking-wide text-ink-muted uppercase md:col-span-7">
+            Project <span aria-hidden>·</span> {project.year}
+          </p>
+          <div className="md:col-span-7 md:row-start-2">
+            <h1 className="font-serif text-[clamp(3.5rem,11vw,9rem)] leading-[0.95] tracking-tight">
               {titleWords.map((word, i) => (
                 <span key={i}>
                   <span className="title-word" style={{ "--i": i } as CSSProperties}>
@@ -62,11 +67,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                 </span>
               ))}
             </h1>
+            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="mt-8 max-w-xl text-xl" />
           </div>
-          {/* The one-liner and facts sit beside the title, not under it. */}
-          <div className="md:col-span-5 md:self-end">
-            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="text-xl" />
-            <dl className="mt-8 border-t border-rule">
+          <div className="md:col-span-5 md:col-start-8 md:row-start-2">
+            <dl className="border-t border-rule">
               <Fact label="Role">{project.role}</Fact>
               <Fact label="Year">
                 <span className="font-mono">{project.year}</span>
