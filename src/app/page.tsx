@@ -2,12 +2,12 @@
 // real preview URL. Replaced by the real home page later in Phase 1.
 
 const swatches = [
-  { name: "sky", token: "bg-sky", hex: "#4A96D6", use: "Hero and feature surfaces" },
-  { name: "mist", token: "bg-mist", hex: "#EAF3FB", use: "Alternate sections" },
-  { name: "white", token: "bg-white", hex: "#FFFFFF", use: "Page background" },
-  { name: "red", token: "bg-red", hex: "#D21F2F", use: "The accent" },
-  { name: "ink", token: "bg-ink", hex: "#0E2A47", use: "Body text" },
-  { name: "ink-muted", token: "bg-ink-muted", hex: "#4A6178", use: "Secondary text" },
+  { name: "ledger", token: "bg-ledger", hex: "#0F1F1A", use: "Page background" },
+  { name: "ledger-raised", token: "bg-ledger-raised", hex: "#172C25", use: "Raised surfaces" },
+  { name: "rule", token: "bg-rule", hex: "#2C4A40", use: "Dividers" },
+  { name: "paper", token: "bg-paper", hex: "#EDE6D6", use: "Main text" },
+  { name: "paper-muted", token: "bg-paper-muted", hex: "#9FB3AA", use: "Secondary text" },
+  { name: "lamp", token: "bg-lamp", hex: "#F2A93B", use: "The one accent" },
 ];
 
 const typeLadder = [
@@ -23,22 +23,22 @@ export default function Home() {
   return (
     <main className="flex-1">
       {/* Split hero draft: finance in serif on the left, data in sans on the right */}
-      <section className="relative grid min-h-[80vh] grid-cols-1 bg-sky md:grid-cols-2">
-        <div className="flex flex-col justify-end border-b-4 border-red p-8 md:border-b-0 md:border-r-4 md:p-16">
-          <p className="font-serif text-3xl italic text-ink">Finance</p>
-          <p className="mt-4 max-w-sm text-ink">
+      <section className="relative grid min-h-[80vh] grid-cols-1 md:grid-cols-2">
+        <div className="flex flex-col justify-end border-b border-rule p-8 md:border-b-0 md:border-r md:p-16">
+          <p className="font-serif text-3xl italic text-paper">Finance</p>
+          <p className="mt-4 max-w-sm text-paper-muted">
             Financial control at JPMorgan Chase. Reading what the numbers say.
           </p>
         </div>
         <div className="flex flex-col justify-end p-8 md:p-16">
-          <p className="font-sans text-3xl font-medium tracking-tight text-ink">
+          <p className="font-sans text-3xl font-medium tracking-tight text-paper">
             Data &amp; technology
           </p>
-          <p className="mt-4 max-w-sm text-ink">
+          <p className="mt-4 max-w-sm text-paper-muted">
             Revenue operations at SAP. Building the systems that produce them.
           </p>
         </div>
-        <h1 className="pointer-events-none absolute inset-x-0 top-1/3 overflow-hidden whitespace-nowrap text-center font-serif text-display font-semibold jersey">
+        <h1 className="pointer-events-none absolute inset-x-0 top-1/3 overflow-hidden whitespace-nowrap text-center font-serif text-display text-paper/90">
           Brandon Le
         </h1>
       </section>
@@ -50,7 +50,7 @@ export default function Home() {
             <li key={s.name}>
               <div className={`${s.token} h-20 rounded-media border border-rule`} />
               <p className="mt-3 font-medium">{s.name}</p>
-              <p className="text-sm text-ink-muted">
+              <p className="text-sm text-paper-muted">
                 {s.hex}, {s.use}
               </p>
             </li>
@@ -61,7 +61,7 @@ export default function Home() {
         <div className="mt-8 space-y-6">
           {typeLadder.map((t) => (
             <div key={t.size} className="grid gap-2 border-t border-rule pt-4 md:grid-cols-[12rem_1fr]">
-              <p className="text-sm text-ink-muted">{t.label}</p>
+              <p className="text-sm text-paper-muted">{t.label}</p>
               <p className={t.size}>
                 <span className="font-serif">Forecast accuracy</span>{" "}
                 <span className="font-sans">by region, Q3 2026</span>
@@ -74,18 +74,18 @@ export default function Home() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a
             href="#"
-            className="rounded-control bg-red px-5 py-3 font-medium text-white transition-colors duration-(--duration-quick) ease-out-soft hover:bg-ink"
+            className="rounded-control bg-lamp px-5 py-3 font-medium text-ledger transition-colors duration-(--duration-quick) ease-out-soft hover:bg-paper"
           >
             See my work
           </a>
           <a
             href="#"
-            className="rounded-control border border-rule px-5 py-3 transition-colors duration-(--duration-quick) ease-out-soft hover:border-red"
+            className="rounded-control border border-rule px-5 py-3 transition-colors duration-(--duration-quick) ease-out-soft hover:border-lamp"
           >
             Download resume
           </a>
-          <span className="rounded-tag bg-mist px-2 py-1 text-sm text-ink">SQL</span>
-          <span className="rounded-tag bg-mist px-2 py-1 text-sm text-ink">Tableau</span>
+          <span className="rounded-tag bg-ledger-raised px-2 py-1 text-sm text-paper-muted">SQL</span>
+          <span className="rounded-tag bg-ledger-raised px-2 py-1 text-sm text-paper-muted">Tableau</span>
         </div>
       </section>
     </main>

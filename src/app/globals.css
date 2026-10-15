@@ -1,21 +1,20 @@
 @import "tailwindcss";
 
 /*
-  Design tokens: "Throwback"
-  Baby blue, white and red, like a classic throwback jersey. Finance is set
-  in a serif (Newsreader), data in a grotesk (IBM Plex Sans). See DESIGN.md.
+  Design tokens: "Banker's lamp"
+  A dark ledger-green room lit by one amber lamp. Finance is set in a serif
+  (Newsreader), data in a grotesk (IBM Plex Sans). See DESIGN.md for rules.
   Every color, size, space and timing on the site comes from this block.
 */
 
 @theme {
-  /* Color: baby blue, white, red, plus a dark ink so body text stays readable */
-  --color-sky: #4a96d6;        /* brand blue: hero and feature surfaces */
-  --color-mist: #eaf3fb;       /* pale blue: alternate section background */
-  --color-white: #ffffff;      /* page background; big type on sky (3.2:1, large text only) */
-  --color-red: #d21f2f;        /* the accent: buttons, outlines, focus. Never as text on sky */
-  --color-ink: #0e2a47;        /* body text: 14.6:1 on white, 4.6:1 on sky */
-  --color-ink-muted: #4a6178;  /* secondary text: 6.4:1 on white */
-  --color-rule: #c9dcee;       /* dividers (decorative only) */
+  /* Color: one base family, one accent */
+  --color-ledger: #0f1f1a;        /* page background */
+  --color-ledger-raised: #172c25; /* cards, raised surfaces */
+  --color-rule: #2c4a40;          /* dividers and borders (decorative only) */
+  --color-paper: #ede6d6;         /* primary text, 13.7:1 on ledger */
+  --color-paper-muted: #9fb3aa;   /* secondary text, 7.7:1 on ledger */
+  --color-lamp: #f2a93b;          /* the one accent, 8.5:1 on ledger */
 
   /* Type families: the split hero's two sides */
   --font-serif: var(--font-newsreader), Georgia, serif;     /* finance */
@@ -55,9 +54,9 @@
 }
 
 html {
-  background: var(--color-white);
-  color: var(--color-ink);
-  color-scheme: light;
+  background: var(--color-ledger);
+  color: var(--color-paper);
+  color-scheme: dark;
 }
 
 body {
@@ -68,21 +67,14 @@ body {
 }
 
 ::selection {
-  background: var(--color-red);
-  color: var(--color-white);
+  background: var(--color-lamp);
+  color: var(--color-ledger);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-red);
+  outline: 2px solid var(--color-lamp);
   outline-offset: 3px;
   border-radius: var(--radius-tag);
-}
-
-/* Jersey-number type: white fill with a red outline, for the big name only */
-.jersey {
-  color: var(--color-white);
-  -webkit-text-stroke: 0.06em var(--color-red);
-  paint-order: stroke fill;
 }
 
 /* Reduced motion: every animation collapses to an instant change */

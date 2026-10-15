@@ -1,27 +1,21 @@
-# Design system: Throwback
+# Design system: Banker's lamp
 
-Baby blue, white and red, like a classic throwback jersey. The home hero is a baby blue field split in two by a red stripe: finance on the left in a serif, data and technology on the right in a grotesk. The name sits on top in jersey-number style, white with a red outline.
+A dark ledger-green room lit by one amber lamp. The home hero splits Brandon's story in two: finance on the left in a serif, data and technology on the right in a grotesk. The two typefaces *are* the two halves of the story, so the split reads even before anyone reads a word.
 
 All tokens live in `src/app/globals.css` under `@theme`. Never hard-code a color, size, or timing in a component; use the token.
 
 ## Color
 
-| Token | Hex | Use | Contrast |
+| Token | Hex | Use | Contrast on ledger |
 | --- | --- | --- | --- |
-| `sky` | #4A96D6 | Hero and feature surfaces | white on sky 3.2:1 (large text only), ink on sky 4.6:1 |
-| `mist` | #EAF3FB | Alternate section background | ink on mist 13:1 |
-| `white` | #FFFFFF | Page background; big type on sky | ink on white 14.6:1 |
-| `red` | #D21F2F | The accent: buttons, stripes, outlines, focus rings | white on red 5.3:1, red on white 5.3:1 |
-| `ink` | #0E2A47 | Body text everywhere | see above |
-| `ink-muted` | #4A6178 | Secondary text on white or mist | 6.4:1 on white |
-| `rule` | #C9DCEE | Dividers (decorative only) | — |
+| `ledger` | #0F1F1A | Page background | — |
+| `ledger-raised` | #172C25 | Cards, raised surfaces | — |
+| `rule` | #2C4A40 | Dividers and borders (decorative only) | 1.75:1 |
+| `paper` | #EDE6D6 | Main text | 13.7:1 |
+| `paper-muted` | #9FB3AA | Secondary text | 7.7:1 |
+| `lamp` | #F2A93B | The one accent: primary buttons, focus rings, active states | 8.5:1 |
 
-Rules:
-
-- Body text is always `ink`. White text on `sky` is only for very large type (the name, 40px and up), because at small sizes it is too faint to read.
-- Never put `red` text on `sky` (1.95:1, unreadable). On `sky`, red is used as a stripe or an outline, the way it sits on the jersey.
-- `red` is the one accent: use it for the single thing per screen that should pull the eye.
-- The palette is inspired by a throwback jersey; no team names, logos or marks are used.
+Rules: `lamp` is the only accent. Use it for at most one thing per screen that should pull the eye. Text on a `lamp` background is `ledger` (8.5:1).
 
 ## Type
 
