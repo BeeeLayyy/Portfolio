@@ -47,12 +47,12 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         <Link href="/projects" className="underline-draw inline-block py-1 text-sm text-ink-muted hover:text-accent">
           All projects
         </Link>
-        <div className="mt-10 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
+        <div className="mt-10 grid gap-10 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-6">
             <p className="font-mono text-sm tracking-wide text-ink-muted uppercase">
               Project <span aria-hidden>·</span> {project.year}
             </p>
-            <h1 className="mt-4 font-serif text-[clamp(3.5rem,11vw,9rem)] leading-[0.95] tracking-tight">
+            <h1 className="mt-4 font-serif text-[clamp(3.25rem,8.5vw,7rem)] leading-[0.95] tracking-tight">
               {titleWords.map((word, i) => (
                 <span key={i}>
                   <span className="title-word" style={{ "--i": i } as CSSProperties}>
@@ -64,8 +64,8 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             </h1>
           </div>
           {/* The one-liner and facts sit beside the title, not under it. */}
-          <div className="md:col-span-5 md:self-end">
-            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="text-xl" />
+          <div className="md:col-span-6 md:col-start-7">
+            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="text-lg md:text-xl" />
             <dl className="mt-8 border-t border-rule">
               <Fact label="Role">{project.role}</Fact>
               <Fact label="Year">
@@ -90,9 +90,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         </div>
       </Container>
 
-      {/* The lead screenshot, full width like Home's card. It still morphs in
-          from the Projects row (view transition). */}
-      <div className="mx-auto w-full max-w-hero px-4 md:px-8">
+      {/* The lead screenshot, sized so all of it fits on one screen: as wide
+          as the text column, and never taller than the window allows. It
+          still morphs in from the Projects row (view transition). */}
+      <div className="mx-auto w-full max-w-[min(var(--container-6xl),calc((100svh-var(--spacing-header)-8rem)*16/9))] px-6 md:px-10">
         <Crosses />
         <div className="media-settle my-6">
           {project.image ? (
@@ -102,7 +103,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                 alt={project.image.alt}
                 width={1600}
                 height={900}
-                sizes="(min-width: 1920px) 1856px, 100vw"
+                sizes="(min-width: 1152px) 1072px, 100vw"
                 className="aspect-video w-full rounded-media bg-surface object-cover object-top ring-1 ring-rule"
                 preload
               />
@@ -115,20 +116,20 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       </div>
 
       <Container className="py-20 md:py-28">
-        <div className="space-y-20 md:space-y-28">
+        <div className="space-y-16 md:space-y-20">
           {chapters.map((c, i) => (
             <section key={c.title} className="grid gap-6 border-t border-rule pt-8 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-4">
                 <div className="md:sticky md:top-[calc(var(--spacing-header)+2rem)]">
                   <p className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</p>
-                  <RevealText as="h2" text={c.title} className="mt-2 font-serif text-3xl" />
+                  <RevealText as="h2" text={c.title} className="mt-2 font-serif text-2xl" />
                 </div>
               </div>
               <div className="md:col-span-8">
                 {/* The whole paragraph rises in. Word-by-word brightening suits
                     short intros, but long text would sit dim near the bottom of
                     the screen until scrolled further. */}
-                <p className="text-xl leading-relaxed md:text-2xl md:leading-relaxed" data-reveal="rise">
+                <p className="text-lg leading-relaxed md:text-xl md:leading-relaxed" data-reveal="rise">
                   {c.body}
                 </p>
               </div>

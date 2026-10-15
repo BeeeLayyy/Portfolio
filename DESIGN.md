@@ -109,7 +109,7 @@ Every inner page opens the same way (`PageHeader`): a mono eyebrow, a big Newsre
 - **Experience:** "By the numbers" (figures from the resume highlights, in `experienceStats`) count up as they scroll in (`CountUp`, `--duration-count`), then a timeline whose line draws itself with scroll; each role is a card with its dates and company pinned on the left on desktop.
 - **About:** the bio beside a pinned portrait, goals as numbered cards, and the toolkit grouped by use (`site.toolkit` groups).
 - **Now:** a numbered list in big type.
-- **Project pages:** the title with the one-liner, facts and link beside it; the lead screenshot at full width between rows of + marks, settling to full size as it scrolls in; then numbered chapters (The problem, What I built, What came of it) with the label pinned on the left and the text in large type on the right. Layout only; the words stay in `projects.ts`.
+- **Project pages:** the title with the one-liner, facts and link beside it; the lead screenshot between rows of + marks, as wide as the text and never taller than the screen (so all of it is visible without zooming out), settling to full size as it scrolls in; then numbered chapters (The problem, What I built, What came of it) with the label pinned on the left and the text one size up from body on the right. Layout only; the words stay in `projects.ts`.
 - **Contact:** the email in huge type with a Copy email button (announced to screen readers), then each profile as a big row with an arrow.
 
 ## Search and sharing (D19)
