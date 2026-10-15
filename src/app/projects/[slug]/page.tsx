@@ -5,6 +5,12 @@ import { notFound } from "next/navigation";
 import { ButtonLink, Container, Tag } from "@/components/ui";
 import { getProject, projects } from "@/content/projects";
 
+// This page awaits its slug before rendering so unknown slugs return a real
+// 404. Streaming behind <Suspense> would make navigation instant but turn
+// those 404s into 200s (dynamicParams isn't available with Cache Components).
+// Known projects are still prerendered below, so the wait is short.
+export const instant = false;
+
 // Build one static page per project at build time.
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
