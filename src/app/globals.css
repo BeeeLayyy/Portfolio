@@ -270,3 +270,27 @@ body {
     transition-timing-function: ease;
   }
 }
+
+/* Home hero 3D card (HeroScene, D15): one blue light in the corner of a dark
+   card, like Lusion's scene window. The still fades in once drawn; the live
+   canvas crossfades in once Three.js has drawn its first frame. */
+.hero-scene {
+  background:
+    radial-gradient(ellipse 55% 80% at 85% 0%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
+    var(--color-surface);
+}
+
+.hero-scene-still,
+.hero-scene-live {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-soft);
+}
+
+.hero-scene[data-still="true"] .hero-scene-still,
+.hero-scene[data-live="true"] .hero-scene-live {
+  opacity: 1;
+}
+
+.hero-scene[data-live="true"] .hero-scene-still {
+  opacity: 0;
+}

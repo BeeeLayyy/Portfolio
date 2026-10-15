@@ -1,5 +1,6 @@
 import { NowCard, ProjectRow, RoleItem } from "@/components/content-blocks";
 import { HeroPlayed } from "@/components/hero-played";
+import { HeroScene } from "@/components/hero-scene/hero-scene";
 import { ButtonLink, Container, Section } from "@/components/ui";
 import { roles } from "@/content/experience";
 import { now } from "@/content/now";
@@ -26,12 +27,17 @@ export default function Home() {
           ))}
         </h1>
         <HeroPlayed />
+        <Container className="pb-12 md:pb-16">
+          <div className="hero-half" style={{ "--i": 0 } as React.CSSProperties}>
+            <HeroScene />
+          </div>
+        </Container>
         <div className="hero-split grid md:grid-cols-2">
-          <div className="hero-half hero-half-start border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 0 } as React.CSSProperties}>
+          <div className="hero-half hero-half-start border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 1 } as React.CSSProperties}>
             <h2 className="hero-title w-fit font-serif-italic text-3xl italic">{site.finance.title}</h2>
             <p className="mt-4 max-w-sm text-ink-muted">{site.finance.line}</p>
           </div>
-          <div className="hero-half p-6 md:p-16" style={{ "--i": 1 } as React.CSSProperties}>
+          <div className="hero-half p-6 md:p-16" style={{ "--i": 2 } as React.CSSProperties}>
             <h2 className="hero-title w-fit font-sans text-3xl font-medium tracking-tight">{site.data.title}</h2>
             <p className="mt-4 max-w-sm text-ink-muted">{site.data.line}</p>
           </div>
