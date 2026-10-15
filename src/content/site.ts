@@ -46,8 +46,9 @@ export const site = {
   // Footer, under the name.
   affiliation: ["Finance and MIS, Villanova University", "Class of 2027"],
   email: "ble02@villanova.edu",
-  // The resume PDF lists a phone number, so the button points to LinkedIn instead.
-  resume: { label: "Resume on LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
+  // The public copy has the phone number removed (D12, revised Oct 15). When the
+  // resume changes, export a new PDF without the phone line and replace this file.
+  resume: { label: "Resume (PDF)", href: "/Brandon_Le_Resume.pdf" },
   // About page toolkit, grouped by what each tool is for (D19).
   toolkit: [
     { group: "Analysis", tools: ["SQL", "Python", "Excel", "Alteryx", "Databricks"] },
