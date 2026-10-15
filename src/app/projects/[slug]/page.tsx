@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
   return project ? { title: project.title, description: project.oneLiner } : {};
 }
 
-// A project page in the Home style (D19): a big title with the one-liner and
-// facts beside it, the lead screenshot at full width, then numbered chapters
+// A project page in the Home style (D19): a big title with the one-liner
+// under it and the facts beside it, the lead screenshot at full width, then numbered chapters
 // with the label pinned on the left and the story in large type on the
 // right, so no column sits empty. Layout only: the words come from
 // src/content/projects.ts.
@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         <Link href="/projects" className="underline-draw inline-block py-1 text-sm text-ink-muted hover:text-accent">
           All projects
         </Link>
-        <div className="mt-10 grid gap-10 md:grid-cols-12 md:items-center">
+        <div className="mt-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="font-mono text-sm tracking-wide text-ink-muted uppercase">
               Project <span aria-hidden>·</span> {project.year}
@@ -62,11 +62,12 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                 </span>
               ))}
             </h1>
+            {/* The one-liner fills the space under the title. */}
+            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="mt-8 max-w-md text-lg md:text-xl" />
           </div>
-          {/* The one-liner and facts sit beside the title, not under it. */}
-          <div className="md:col-span-6 md:col-start-7">
-            <RevealText as="p" mode="fade-words" text={project.oneLiner} className="text-lg md:text-xl" />
-            <dl className="mt-8 border-t border-rule">
+          {/* Facts and the link sit beside the title, lined up with its top. */}
+          <div className="md:col-span-6 md:col-start-7 md:pt-9">
+            <dl className="border-t border-rule">
               <Fact label="Role">{project.role}</Fact>
               <Fact label="Year">
                 <span className="font-mono">{project.year}</span>
