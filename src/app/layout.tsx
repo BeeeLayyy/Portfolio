@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { site } from "@/content/site";
 import "./globals.css";
 
 // Finance side of the identity: a serif with optical sizes, so the huge
@@ -19,9 +22,8 @@ const plexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Brandon Le",
-  description:
-    "Finance and MIS at Villanova. Work, projects, and what I'm building now.",
+  title: { default: site.name, template: `%s | ${site.name}` },
+  description: site.description,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -30,7 +32,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${newsreader.variable} ${plexSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-lamp focus:px-4 focus:py-2 focus:text-ledger"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
