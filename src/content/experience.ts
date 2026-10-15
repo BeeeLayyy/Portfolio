@@ -1,7 +1,8 @@
 import type { Role } from "./types";
 
-// Dates and summaries are placeholders until Phase 2. What can be said about
-// internship work is decision D9 in the build plan.
+// D9 (Oct 15): name the team and the kind of work only. No project names,
+// numbers, clients or data from any employer.
+// TODO: dates for each role, and which tools were used where.
 
 export const roles: Role[] = [
   {
@@ -10,8 +11,9 @@ export const roles: Role[] = [
     title: "iXp Intern",
     start: "TODO",
     end: "Present",
-    summary: "Placeholder summary.",
-    skills: ["SQL", "Tableau"],
+    summary:
+      "Data analysis and reporting for revenue operations across SAP's Americas business.",
+    skills: ["Data analysis", "Reporting"],
   },
   {
     company: "JPMorgan Chase",
@@ -19,8 +21,9 @@ export const roles: Role[] = [
     title: "Intern",
     start: "TODO",
     end: "TODO",
-    summary: "Placeholder summary.",
-    skills: ["Alteryx"],
+    summary:
+      "Financial control for the Treasury and Chief Investment Office, inside Global Finance & Business Management.",
+    skills: ["Financial control"],
   },
   {
     company: "SAP",
@@ -28,7 +31,7 @@ export const roles: Role[] = [
     title: "Intern",
     start: "TODO",
     end: "TODO",
-    summary: "Placeholder summary.",
+    summary: "Advisory work with SAP's customer engagement team.",
     skills: [],
   },
   {
@@ -37,7 +40,7 @@ export const roles: Role[] = [
     title: "Intern",
     start: "TODO",
     end: "TODO",
-    summary: "Placeholder summary.",
+    summary: "Consulting work at a boutique firm.",
     skills: [],
   },
 ];
