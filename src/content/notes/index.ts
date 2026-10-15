@@ -4,7 +4,7 @@ import type { Note } from "../types";
 // 1. Write it as src/content/notes/<slug>.mdx (plain Markdown is fine).
 // 2. Add an entry below with the same slug. Leave draft: true to read it by
 //    its link first; delete that line to publish.
-// The Notes link appears in the menu once at least one note is published.
+// Until one is published, the Notes page says the first note is on its way.
 export const notes: Note[] = [
   {
     slug: "how-i-built-this-site",

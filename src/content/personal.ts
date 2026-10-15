@@ -9,8 +9,13 @@ export const offTheClock: {
   favorites: { label: string; value: string }[]; // e.g. Team, Reading, Listening to, Watching
   photos: (Image & { caption: string })[];
 } = {
-  intro: "",
-  interests: [],
+  // Started from what's already on the site (Oct 15); swap in your own.
+  intro: "When I'm not at work or in class.",
+  interests: [
+    { title: "NBA basketball", detail: "I follow it closely enough that I built Courtside to make sense of the numbers." },
+    { title: "Building products", detail: "Courtside and this site, both planned and shipped like real launches." },
+    { title: "Automating the busywork", detail: "Turning the reports people rebuild by hand into workflows that run themselves." },
+  ],
   favorites: [],
   photos: [],
 };

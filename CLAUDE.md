@@ -76,7 +76,7 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 
 ## Adding content (D20)
 
-- **A note (blog post):** write `src/content/notes/<slug>.mdx` in plain Markdown, then add an entry to `src/content/notes/index.ts`. `draft: true` keeps it out of lists, the menu, the feed and search but opens by link for review; remove it to publish. The Notes link joins the menu once one note is published. Feed: `/notes/feed.xml`.
+- **A note (blog post):** write `src/content/notes/<slug>.mdx` in plain Markdown, then add an entry to `src/content/notes/index.ts`. `draft: true` keeps it out of lists, the menu, the feed and search but opens by link for review; remove it to publish. Notes is always in the menu; with nothing published the page says the first note is on its way. Feed: `/notes/feed.xml`.
 - **A project:** copy the template at the top of `src/content/projects.ts`, add a 16:9 screenshot to `public/images/`.
 - **Personality ("Off the clock" on About):** fill `src/content/personal.ts` (intro, interests, favorites, photos). Any filled part appears; all empty keeps it hidden.
 

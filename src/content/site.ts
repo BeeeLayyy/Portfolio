@@ -1,4 +1,3 @@
-import { publishedNotes } from "./notes";
 import type { Link } from "./types";
 
 export const site = {
@@ -73,8 +72,7 @@ export const nav: Link[] = [
   { label: "Experience", href: "/experience" },
   { label: "About", href: "/about" },
   { label: "Now", href: "/now" },
-  // Notes joins the menu once the first note is published (D20).
-  ...(publishedNotes.length > 0 ? [{ label: "Notes", href: "/notes" }] : []),
+  { label: "Notes", href: "/notes" }, // D20: in the menu from the start (Brandon, Oct 15)
   { label: "Contact", href: "/contact" },
 ];
 
