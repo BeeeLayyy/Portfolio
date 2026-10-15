@@ -116,3 +116,8 @@ Every inner page opens the same way (`PageHeader`): a mono eyebrow, a big Newsre
 
 The link preview (`src/app/opengraph-image.jpg`, 1200 by 630) shows the title, "Finance and MIS · Villanova", the domain and the 3D scene. Recompose it when the hero changes. Home carries schema.org Person data (name, URL, headshot, Villanova, toolkit, profiles) so search engines know who the site is about.
 
+## Notes and personality (D20)
+
+- **Notes:** the list shows date (mono), title (Newsreader) and summary per row with a sliding arrow. A note page sets the title large over a reading column about 42rem wide; Markdown is styled by `src/mdx-components.tsx` (serif headings, accent links, blue quote rule, mono code). Drafts show a Draft tag.
+- **Off the clock (About):** interests as cards, favorites as a short ledger (mono label, value), photos tilted a degree that straighten on hover. Every part appears only when it has content.
+

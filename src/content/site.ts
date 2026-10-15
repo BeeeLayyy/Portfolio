@@ -1,3 +1,4 @@
+import { publishedNotes } from "./notes";
 import type { Link } from "./types";
 
 export const site = {
@@ -64,6 +65,7 @@ export const pageDescriptions = {
   projects: "Courtside, an NBA analytics site Brandon planned, designed and built.",
   now: "What Brandon is focused on this season.",
   contact: "Email or LinkedIn. Open to finance, product and data roles.",
+  notes: "Thoughts and ideas on finance, data, basketball and building things.",
 };
 
 export const nav: Link[] = [
@@ -71,6 +73,8 @@ export const nav: Link[] = [
   { label: "Experience", href: "/experience" },
   { label: "About", href: "/about" },
   { label: "Now", href: "/now" },
+  // Notes joins the menu once the first note is published (D20).
+  ...(publishedNotes.length > 0 ? [{ label: "Notes", href: "/notes" }] : []),
   { label: "Contact", href: "/contact" },
 ];
 

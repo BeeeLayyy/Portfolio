@@ -48,3 +48,15 @@ export type Goal = {
   title: string;
   detail: string;
 };
+
+// A note (blog post, D20). The words live in src/content/notes/<slug>.mdx;
+// this is the listing info. Drafts never appear in lists, the nav or search
+// results, but open by direct link so they can be read before publishing.
+export type Note = {
+  slug: string; // the .mdx file name and the URL: /notes/<slug>
+  title: string;
+  date: string; // YYYY-MM-DD
+  summary: string; // one or two sentences, shown in the list and link previews
+  draft?: boolean;
+};
+

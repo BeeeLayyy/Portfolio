@@ -4,6 +4,26 @@ import type { Project } from "./types";
 // TODO after the Oct 28 public launch: swap the link to the real domain and
 // add real numbers (weekly returning visitors) to `outcome`.
 
+// To add a project (D20): copy this block into the list, fill it in, and
+// put a 16:9 screenshot (about 1600 by 900) in public/images/. The project
+// gets its own page at /projects/<slug>, a row on Projects, and a hover
+// preview; set featured: true to also show it on Home.
+//
+//   {
+//     slug: "my-project",
+//     title: "My project",
+//     oneLiner: "One sentence on what it is.",
+//     role: "What I did",
+//     year: "2026",
+//     stack: ["Excel", "Power BI"],
+//     problem: "What was wrong or missing.",
+//     built: "What I made.",
+//     outcome: "What happened because of it.",
+//     links: [{ label: "See it", href: "https://..." }],
+//     image: { src: "/images/my-project.webp", alt: "What the screenshot shows." },
+//     featured: false,
+//   },
+
 export const projects: Project[] = [
   {
     slug: "courtside",

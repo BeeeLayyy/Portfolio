@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { RevealText } from "@/components/motion/reveal-text";
 import { Container, PageHeader } from "@/components/ui";
 import { goals } from "@/content/now";
+import { offTheClock } from "@/content/personal";
 import { site, pageDescriptions } from "@/content/site";
 
 export const metadata: Metadata = { title: "About", description: pageDescriptions.about };
@@ -68,6 +69,10 @@ export default function AboutPage() {
         </ol>
       </Container>
 
+      {(offTheClock.interests.length > 0 || offTheClock.favorites.length > 0 || offTheClock.photos.length > 0) && (
+        <OffTheClock />
+      )}
+
       <Container className="pb-24">
         <div className="border-b border-rule pb-4">
           <RevealText as="h2" text="Toolkit" className="font-serif text-3xl" />
@@ -95,3 +100,55 @@ export default function AboutPage() {
     </>
   );
 }
+
+// The personality part (D20), from src/content/personal.ts: interests as
+// cards, favorites as a short ledger, and photos that tilt slightly and
+// straighten on hover. Each piece shows only if it has content.
+function OffTheClock() {
+  const { intro, interests, favorites, photos } = offTheClock;
+  return (
+    <Container className="pb-20">
+      <div className="border-b border-rule pb-4">
+        <RevealText as="h2" text="Off the clock" className="font-serif text-3xl" />
+        {intro && <p className="mt-3 max-w-2xl text-lg text-ink-muted">{intro}</p>}
+      </div>
+      <div className="mt-10 grid gap-10 md:grid-cols-12">
+        {interests.length > 0 && (
+          <ul className={`grid gap-4 sm:grid-cols-2 ${favorites.length ? "md:col-span-8" : "md:col-span-12 md:grid-cols-3"}`}>
+            {interests.map((it, i) => (
+              <li key={it.title} className="rounded-media bg-surface p-6 ring-1 ring-rule" data-reveal="scale" style={{ "--i": i } as CSSProperties}>
+                <h3 className="text-lg font-medium">{it.title}</h3>
+                <p className="mt-2 text-ink-muted">{it.detail}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+        {favorites.length > 0 && (
+          <dl className={`border-t border-rule ${interests.length ? "md:col-span-4" : "md:col-span-6"}`}>
+            {favorites.map((f, i) => (
+              <div key={f.label} className="grid grid-cols-[8rem_1fr] gap-4 border-b border-rule py-4" data-reveal="rise" style={{ "--i": i } as CSSProperties}>
+                <dt className="font-mono text-sm tracking-wide text-ink-muted uppercase">{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+      {photos.length > 0 && (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {photos.map((ph, i) => (
+            <figure key={ph.src} data-reveal="scale" style={{ "--i": i } as CSSProperties}>
+              <div
+                className={`overflow-hidden rounded-media ring-1 ring-rule transition-transform duration-(--duration-base) ease-out-soft pointer-fine:hover:rotate-0 ${i % 2 ? "rotate-1" : "-rotate-1"}`}
+              >
+                <Image src={ph.src} alt={ph.alt} width={1200} height={900} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="aspect-[4/3] w-full object-cover" />
+              </div>
+              <figcaption className="mt-3 font-mono text-sm text-ink-muted">{ph.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
+    </Container>
+  );
+}
+
