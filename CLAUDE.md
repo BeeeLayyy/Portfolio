@@ -72,6 +72,7 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 - Phase 3 covered: hero entrance, page-change fade, button press, project-row hover preview, hero split hover; phone polish; page descriptions, share image and icons; review-animations, WCAG 2.2 AA review and design critique, each with fixes; Lighthouse mobile 93 to 97 performance and 100 for accessibility, best practices and SEO.
 - `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
 - D14 to D19 merged to `main` and live Oct 15: Horizon Night, 3D hero, Lusion motion, personal scene with cursor warp, short title with portrait section and living background, inner pages in the Home style, share image and Person data. Live Lighthouse: Home phone 93, desktop 97; Experience phone 96; 100 for accessibility, best practices and SEO. Local `next start` runs score phones lower (about 81 to 86) because there's no CDN; trust the live numbers.
+- D20 live Oct 15: Notes in the menu (no posts published yet; "How I built this site" is a draft for Brandon to rewrite), Off the clock on About with three starter interests, project template.
 - Fonts: Newsreader italic is a separate, non-preloaded font (`font-serif-italic`), and the hero's `rise-in` starts at 1% opacity, not 0, so Largest Contentful Paint counts at first paint. Both are deliberate; see the comments in `layout.tsx` and `globals.css`.
 
 ## Adding content (D20)
