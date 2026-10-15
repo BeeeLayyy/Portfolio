@@ -27,6 +27,7 @@ After each finished task or decision, update the plan board and decisions log, t
   - `apple-design`, `pick-ui-library`, `prototype`: only when asked.
   - Not used here: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (no toasts on this site).
 - 21st.dev component library is connected as an MCP server in `.mcp.json` (key read from the `API_KEY_21ST` environment variable; never commit the key). Use it to find or generate UI components, then restyle anything it returns with our tokens and `DESIGN.md` rules. Don't paste a component in with its own colors, fonts or easing.
+- Motion (the `motion` npm package, Motion for React) is the animation library for this site. The Motion AI Kit is installed: the `motion` skill in `.claude/skills/motion/`, the `motion-reviewer` agent in `.claude/agents/`, and two hosted MCP servers in `.mcp.json` (`motion` works signed out; `motion-plus` asks you to sign in to Motion+ the first time it's used). Use the `motion` skill when writing Motion code, and run `motion-reviewer` alongside `review-animations` in the Phase 3 gate.
 - Motion rules from these skills must still use our tokens in `globals.css` (`--ease-out-soft`, `--duration-*`) and respect reduced motion. Extend the tokens; never add a parallel set.
 - Narrate the "why" behind decisions at a level a smart beginner can follow. Keep replies brief and direct. Copy is concise and human, with no em dashes.
 - Run `npx next typegen` before `npx tsc --noEmit` when routes change. Local builds can fail fetching Google Fonts offline; Vercel builds fine.
