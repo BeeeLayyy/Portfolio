@@ -11,7 +11,18 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
   subsets: ["latin"],
   axes: ["opsz"],
-  style: ["normal", "italic"],
+  style: ["normal"],
+});
+
+// The italic is used once ("Finance" in the hero), so it isn't preloaded:
+// it loads after first paint instead of competing with the fonts the
+// first screen needs. Use it with the font-serif-italic class.
+const newsreaderItalic = Newsreader({
+  variable: "--font-newsreader-italic",
+  subsets: ["latin"],
+  axes: ["opsz"],
+  style: ["italic"],
+  preload: false,
 });
 
 // Data side: a grotesk with true tabular figures for numbers and tables.
@@ -41,7 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${plexSans.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${newsreaderItalic.variable} ${plexSans.variable} h-full antialiased`}
       suppressHydrationWarning // the script below may set data-hero before React loads
     >
       <head>

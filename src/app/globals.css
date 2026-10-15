@@ -18,6 +18,7 @@
 
   /* Type families: the split hero's two sides */
   --font-serif: var(--font-newsreader), Georgia, serif;     /* finance */
+  --font-serif-italic: var(--font-newsreader-italic), Georgia, serif; /* finance, italic: its own file, loaded after first paint */
   --font-sans: var(--font-plex-sans), system-ui, sans-serif; /* data */
 
   /* Type scale: 1.25 ratio from a 17px body; display sizes grow with the screen */
@@ -119,9 +120,13 @@ body {
    The name rises in word by word, then the two halves rise in after it.
    Plays once per session: once it has played, <html data-hero="played">
    turns it off (set by HeroPlayed and an inline script in the layout). */
+/* Starts at 1% opacity, not 0: it looks the same, but Chrome only counts
+   visible text toward Largest Contentful Paint, and the hero holds the
+   page's largest text. From 0 the paint would be recorded after the
+   entrance instead of at first paint. */
 @keyframes rise-in {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(0.35em);
   }
 }
