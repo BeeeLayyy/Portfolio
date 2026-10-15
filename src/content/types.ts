@@ -25,9 +25,11 @@ export type Role = {
   company: string;
   team: string;
   title: string;
+  location: string;
   start: string;
   end: string; // "Present" for current roles
-  summary: string;
+  summary: string; // one line, shown on the home page
+  highlights: string[]; // shown on the Experience page
   skills: string[];
 };
 

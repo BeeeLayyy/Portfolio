@@ -14,9 +14,9 @@ export const site = {
     title: "Data & technology",
     line: "Revenue operations at SAP. Building the systems that produce them.",
   },
-  email: "TODO@example.com", // TODO: real contact email
+  email: "ble02@villanova.edu",
   resumeHref: "/resume.pdf", // TODO: add the PDF to /public
-  toolkit: ["SQL", "Python", "Tableau", "Alteryx", "Databricks"],
+  toolkit: ["SQL", "Python", "Excel", "Power BI", "Tableau", "Alteryx", "Databricks", "SAP S/4HANA", "Salesforce", "Figma", "PowerPoint", "Claude"],
 };
 
 export const nav: Link[] = [
@@ -29,5 +29,5 @@ export const nav: Link[] = [
 
 export const socials: Link[] = [
   { label: "GitHub", href: "https://github.com/BeeeLayyy" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/" }, // TODO: profile URL
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
 ];
