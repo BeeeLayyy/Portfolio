@@ -50,3 +50,13 @@ export const roles: Role[] = [
     skills: ["Product analysis", "Client health KPIs"],
   },
 ];
+
+// Experience page, "By the numbers" (D19): figures straight from the
+// highlights above, nothing new. They count up as they scroll in.
+export const experienceStats = [
+  { value: "$2B+", label: "in exposure reconciled across 15+ legal entities at JPMorgan Chase" },
+  { value: "95%", label: "of breaks resolved before reporting deadlines" },
+  { value: "8 hrs", label: "saved each week by one Alteryx and Tableau workflow" },
+  { value: "20%", label: "faster report distribution for 50+ stakeholders at SAP" },
+];
+

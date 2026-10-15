@@ -101,3 +101,17 @@ Behind every page: two soft pools of blue light (`--color-accent`, `--color-scen
 ## Home hero title and intro section (D18)
 
 The hero title is just "Brandon Le's portfolio", large, in Newsreader. The next section is two columns: on the left the "Finance, built on data" title, a short intro, four quick facts (Now, Before, Building, Graduating: mono labels over a ruled grid, like a ledger) and the About link; on the right Brandon's portrait, which zooms slightly on hover. The facts live in `site.approach.facts`.
+
+## Inner pages (D19)
+
+Every inner page opens the same way (`PageHeader`): a mono eyebrow, a big Newsreader title whose words rise in, and an intro that brightens word by word.
+
+- **Experience:** "By the numbers" (figures from the resume highlights, in `experienceStats`) count up as they scroll in (`CountUp`, `--duration-count`), then a timeline whose line draws itself with scroll; each role is a card with its dates and company pinned on the left on desktop.
+- **About:** the bio beside a pinned portrait, goals as numbered cards, and the toolkit grouped by use (`site.toolkit` groups).
+- **Now:** a numbered list in big type.
+- **Contact:** the email in huge type with a Copy email button (announced to screen readers), then each profile as a big row with an arrow.
+
+## Search and sharing (D19)
+
+The link preview (`src/app/opengraph-image.jpg`, 1200 by 630) shows the title, "Finance and MIS · Villanova", the domain and the 3D scene. Recompose it when the hero changes. Home carries schema.org Person data (name, URL, headshot, Villanova, toolkit, profiles) so search engines know who the site is about.
+

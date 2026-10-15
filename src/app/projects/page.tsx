@@ -10,7 +10,8 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHeader
-        title="Projects"
+        eyebrow="Projects"
+        title="Things I build"
         intro="What I build on my own time, planned and shipped like a real product."
       />
       <Container className="pb-24">

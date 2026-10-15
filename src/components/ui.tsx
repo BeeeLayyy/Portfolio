@@ -9,12 +9,16 @@ export function Container({ children, className = "" }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-6xl px-6 md:px-10 ${className}`}>{children}</div>;
 }
 
-export function PageHeader({ title, intro }: { title: string; intro?: string }) {
+// The top of every inner page (D19), Lusion-style: a small mono label, a
+// big title whose words rise in on load, and an intro that brightens word
+// by word.
+export function PageHeader({ title, intro, eyebrow }: { title: string; intro?: string; eyebrow?: string }) {
   return (
-    <Container className="pt-20 pb-12 md:pt-28">
-      {/* Words rise in on load, like the Home hero (no scroll trigger: it's
-          the top of the page, and the title is often its largest text). */}
-      <h1 className="font-serif text-3xl">
+    <Container className="pt-14 pb-14 md:pt-24 md:pb-20">
+      {eyebrow && <p className="font-mono text-sm tracking-wide text-ink-muted uppercase">{eyebrow}</p>}
+      {/* Words rise in on load (no scroll trigger: it's the top of the page,
+          and the title is often its largest text). */}
+      <h1 className="mt-4 font-serif text-[clamp(3.5rem,11vw,9rem)] leading-[0.95] tracking-tight">
         {title.split(" ").map((word, i, all) => (
           <span key={i}>
             <span className="title-word" style={{ "--i": i } as CSSProperties}>
@@ -25,7 +29,7 @@ export function PageHeader({ title, intro }: { title: string; intro?: string }) 
         ))}
       </h1>
       {intro && (
-        <RevealText as="p" mode="fade-words" text={intro} className="mt-6 max-w-prose text-lg text-ink-muted" />
+        <RevealText as="p" mode="fade-words" text={intro} className="mt-8 max-w-2xl text-xl text-ink-muted" />
       )}
     </Container>
   );

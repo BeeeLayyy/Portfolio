@@ -48,7 +48,13 @@ export const site = {
   email: "ble02@villanova.edu",
   // The resume PDF lists a phone number, so the button points to LinkedIn instead.
   resume: { label: "Resume on LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
-  toolkit: ["SQL", "Python", "Excel", "Power BI", "Tableau", "Alteryx", "Databricks", "SAP S/4HANA", "Salesforce", "Figma", "PowerPoint", "Claude"],
+  // About page toolkit, grouped by what each tool is for (D19).
+  toolkit: [
+    { group: "Analysis", tools: ["SQL", "Python", "Excel", "Alteryx", "Databricks"] },
+    { group: "Reporting", tools: ["Power BI", "Tableau", "PowerPoint"] },
+    { group: "Enterprise systems", tools: ["SAP S/4HANA", "Salesforce"] },
+    { group: "Design and building", tools: ["Figma", "Claude"] },
+  ],
 };
 
 // One line per page for search results and link previews.

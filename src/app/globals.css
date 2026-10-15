@@ -80,6 +80,7 @@
   --duration-intro: 2200ms; /* first-visit intro: count to 100, name, wipe (D16) */
   --intro-offset: 1800ms;   /* when the hero entrance starts under the intro's wipe */
   --duration-ambient: 46s;  /* one drift of the background light (D18) */
+  --duration-count: 1200ms; /* a figure counting up as it scrolls in (D19) */
 }
 
 html {
@@ -1161,3 +1162,23 @@ html.lenis body {
     animation-timeline: scroll(root);
   }
 }
+
+/* --- Experience timeline (D19): the line draws downward as you scroll
+   through the roles. Scroll-driven, transform only; browsers without
+   scroll timelines show it fully drawn. --- */
+@keyframes line-draw {
+  from { transform: scaleY(0); }
+}
+
+.timeline-line {
+  transform-origin: top center;
+}
+
+@supports (animation-timeline: view()) {
+  .timeline-line {
+    animation: line-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 70%;
+  }
+}
+

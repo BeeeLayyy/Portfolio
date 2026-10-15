@@ -9,7 +9,7 @@ import { ButtonLink, Container, Section } from "@/components/ui";
 import { roles } from "@/content/experience";
 import { now } from "@/content/now";
 import { projects } from "@/content/projects";
-import { site } from "@/content/site";
+import { site, socials } from "@/content/site";
 
 // Home, laid out like lusion.co's first screen (D16): a one-sentence title,
 // the 3D card filling the rest of the screen, and a "scroll to explore" row.
@@ -21,8 +21,23 @@ export default function Home() {
   const showcase = featured.find((p) => p.image);
   const words = site.heroLine.split(" ");
 
+  // Tells search engines who this site is about (schema.org Person), so a
+  // search for Brandon's name can show the right profile details (D19).
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.name,
+    url: site.url,
+    image: new URL(site.headshot.src, site.url).href,
+    description: site.description,
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Villanova University" },
+    knowsAbout: site.toolkit.flatMap((t) => t.tools),
+    sameAs: socials.map((s) => s.href),
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }} />
       {/* Full width like Lusion's first screen: the title over the left of
           center, then the card filling the rest of the screen. */}
       <section aria-labelledby="hero-title" className="flex flex-col md:min-h-[calc(100svh-var(--spacing-header))]">
