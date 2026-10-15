@@ -1182,3 +1182,17 @@ html.lenis body {
   }
 }
 
+/* --- Project pages (D19): the lead screenshot settles from slightly small
+   to full size as it scrolls in, like Lusion's project pages. --- */
+@keyframes media-settle {
+  from { transform: scale(0.92); }
+}
+
+@supports (animation-timeline: view()) {
+  .media-settle {
+    animation: media-settle linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+}
+
