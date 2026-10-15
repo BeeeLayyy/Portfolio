@@ -75,5 +75,4 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 ## Next up
 
 1. Phase 3 polish on a new branch: motion (hero, page transitions, project-row hover image), phone polish, metadata and share image. Plan motion with `find-animation-opportunities` first.
-2. Optional: add the graduation year to the first goal in `src/content/now.ts` once Brandon confirms it.
-3. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot.
+2. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot.

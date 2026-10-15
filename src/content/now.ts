@@ -20,7 +20,7 @@ export const now: NowItem[] = [
 export const goals: Goal[] = [
   {
     title: "A full-time role where finance meets data",
-    detail: "Starting after graduation, in finance, product or data.",
+    detail: "Starting after I graduate in May 2027, in finance, product or data.",
   },
   {
     title: "Grow Courtside past launch",
