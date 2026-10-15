@@ -18,6 +18,10 @@ export const site = {
     "This summer I was on JPMorgan Chase's Global Finance & Business Management team, reconciling balance sheets for Treasury and the Chief Investment Office. Now I'm in revenue operations at SAP, building the reporting North America sales leaders use to make decisions. Before that I spent ten months as a product analyst at SAP, working with enterprise customers like Nike and Coca-Cola.",
     "Outside of work I'm building Courtside, an NBA analytics site that turns official stats into scouting reports.",
   ],
+  headshot: {
+    src: "/images/brandon-le.webp",
+    alt: "Brandon Le in a navy suit, white shirt and striped tie",
+  },
   email: "ble02@villanova.edu",
   // The resume PDF lists a phone number, so the button points to LinkedIn instead.
   resume: { label: "Resume on LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
