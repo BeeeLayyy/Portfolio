@@ -18,7 +18,13 @@ export type Project = {
   built: string;
   outcome: string;
   links: Link[];
+  image?: Image; // lead screenshot on the project page, 16:9
   featured: boolean; // shown on the home page
+};
+
+export type Image = {
+  src: string; // path under /public
+  alt: string;
 };
 
 export type Role = {

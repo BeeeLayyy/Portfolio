@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink, Container, Tag } from "@/components/ui";
@@ -61,9 +62,20 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         )}
       </Container>
 
-      {/* Placeholder for the project's lead image or video (Phase 2 assets). */}
       <Container>
-        <div className="aspect-video rounded-media bg-ledger-raised" role="img" aria-label={`${project.title} preview, coming soon`} />
+        {project.image ? (
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={1600}
+            height={900}
+            sizes="(min-width: 1280px) 1072px, 100vw"
+            className="aspect-video w-full rounded-media bg-ledger-raised"
+            preload
+          />
+        ) : (
+          <div className="aspect-video rounded-media bg-ledger-raised" role="img" aria-label={`${project.title} preview, coming soon`} />
+        )}
       </Container>
 
       <Container className="py-20">

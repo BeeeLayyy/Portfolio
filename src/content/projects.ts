@@ -20,6 +20,11 @@ export const projects: Project[] = [
     outcome:
       "Courtside launches with the NBA season. Opening night on October 20 is the first real test of the live features, and the public launch follows on October 28. Analytics are privacy-first, with no cookies and no IP addresses, and the number I track is fans who come back each week.",
     links: [{ label: "Visit Courtside", href: "https://courtside-ecru.vercel.app" }],
+    // Taken Oct 15, before opening night. Retake after the Oct 28 launch.
+    image: {
+      src: "/images/courtside.webp",
+      alt: "Courtside home page previewing opening night: Thunder at Spurs with each team's win chance and projected top scorers.",
+    },
     featured: true,
   },
 ];
