@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens: "Banker's lamp"
+  A dark ledger-green room lit by one amber lamp. Finance is set in a serif
+  (Newsreader), data in a grotesk (IBM Plex Sans). See DESIGN.md for rules.
+  Every color, size, space and timing on the site comes from this block.
+*/
+
+@theme {
+  /* Color: one base family, one accent */
+  --color-ledger: #0f1f1a;        /* page background */
+  --color-ledger-raised: #172c25; /* cards, raised surfaces */
+  --color-rule: #2c4a40;          /* dividers and borders (decorative only) */
+  --color-paper: #ede6d6;         /* primary text, 13.7:1 on ledger */
+  --color-paper-muted: #9fb3aa;   /* secondary text, 7.7:1 on ledger */
+  --color-lamp: #f2a93b;          /* the one accent, 8.5:1 on ledger */
+
+  /* Type families: the split hero's two sides */
+  --font-serif: var(--font-newsreader), Georgia, serif;     /* finance */
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif; /* data */
+
+  /* Type scale: 1.25 ratio from a 17px body; display sizes grow with the screen */
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.3125rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.6875rem;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 2.0625rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: clamp(2.5rem, 5vw, 4rem);
+  --text-3xl--line-height: 1.05;
+  --text-display: clamp(4rem, 14vw, 13rem); /* the moving name */
+  --text-display--line-height: 0.9;
+
+  /* Spacing: 4px base; Tailwind's p-4, gap-8 etc. all derive from this */
+  --spacing: 0.25rem;
+
+  /* Radius: varies by role, not one value everywhere */
+  --radius-tag: 2px;
+  --radius-control: 6px;
+  --radius-media: 12px;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);  /* things arriving */
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1); /* things moving across */
+  --duration-quick: 140ms;  /* hover, focus */
+  --duration-base: 280ms;   /* menus, toggles */
+  --duration-slow: 600ms;   /* page and section reveals */
+  --duration-hero: 1100ms;  /* the one orchestrated hero moment */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-ledger);
+  color: var(--color-paper);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  font-variant-numeric: tabular-nums; /* numbers line up like a ledger */
+}
+
+::selection {
+  background: var(--color-lamp);
+  color: var(--color-ledger);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lamp);
+  outline-offset: 3px;
+  border-radius: var(--radius-tag);
+}
+
+/* Reduced motion: every animation collapses to an instant change */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
 }
