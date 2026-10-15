@@ -18,6 +18,15 @@ After each finished task or decision, update the plan board and decisions log, t
 - One branch per change. Every push gets a Vercel preview; only merges to `main` reach production.
 - After every push, give Brandon the preview link. Stable link for the current branch: `https://portfolio-git-<branch>-brandonlcfs2023-2984s-projects.vercel.app` (needs a Vercel login).
 - Use installed skills by lane: `design:design-system` and `frontend-design` (frontend), `design:ux-copy` (copy), `design:accessibility-review` and `design:design-critique` (QA, before calling a phase done). AnimatedWebs skills for motion in Phase 3.
+- Emil Kowalski skills are installed in `.claude/skills/` (from `emilkowalski/skills`, pinned in `skills-lock.json`). Use them for motion and polish:
+  - `emil-design-eng`, `animate`, `animation-vocabulary`: build any animation or interaction (Phase 3 hero, page transitions, project-row hover image).
+  - `find-animation-opportunities`, `improve-animations`: plan where motion should go before building it.
+  - `review-animations`, `animation-performance`: QA gate for every motion change, alongside `design:accessibility-review`.
+  - `break-ui`: stress-test components with long names, empty states and extreme content before a phase is done.
+  - `mobile-native`: phone polish in Phase 3 (tap highlights, 100vh, notch).
+  - `apple-design`, `pick-ui-library`, `prototype`: only when asked.
+  - Not used here: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (no toasts on this site).
+- Motion rules from these skills must still use our tokens in `globals.css` (`--ease-out-soft`, `--duration-*`) and respect reduced motion. Extend the tokens; never add a parallel set.
 - Narrate the "why" behind decisions at a level a smart beginner can follow. Keep replies brief and direct. Copy is concise and human, with no em dashes.
 - Run `npx next typegen` before `npx tsc --noEmit` when routes change. Local builds can fail fetching Google Fonts offline; Vercel builds fine.
 
