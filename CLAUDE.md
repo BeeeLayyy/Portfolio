@@ -68,10 +68,10 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 
 ## Where things stand (Oct 15, 2026)
 
-- All five phases (0 to 4) done. The site is live at https://brandonle.site (www redirects to it), with Vercel Analytics and Speed Insights on. Live Lighthouse mobile: Home 98 to 99, Courtside 96, 100 for accessibility, best practices and SEO.
+- All five phases (0 to 4) done. The site is live at https://brandonle.site (www redirects to it), with Vercel Analytics and Speed Insights on. Live Lighthouse mobile before D14 to D17: Home 98 to 99, Courtside 96.
 - Phase 3 covered: hero entrance, page-change fade, button press, project-row hover preview, hero split hover; phone polish; page descriptions, share image and icons; review-animations, WCAG 2.2 AA review and design critique, each with fixes; Lighthouse mobile 93 to 97 performance and 100 for accessibility, best practices and SEO.
 - `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
-- D16 (Lusion motion) and D17 (personal 3D hero, cursor warp) are on `feat/page-skeleton`, not merged yet. Local Lighthouse: desktop 97; phone about 82 (was 90 to 96), although the title still paints at first paint (observed LCP 0.17s). The simulated phone score is held back by fonts and the intro's Speed Index.
+- D14 to D17 (Horizon Night, 3D hero, Lusion motion, personal scene with cursor warp) merged to `main` and live Oct 15. Live Lighthouse: phone 95 to 96, desktop 97; 100 for accessibility, best practices and SEO. Local `next start` runs score phones lower (about 82 to 86) because there's no CDN; trust the live numbers.
 - Fonts: Newsreader italic is a separate, non-preloaded font (`font-serif-italic`), and the hero's `rise-in` starts at 1% opacity, not 0, so Largest Contentful Paint counts at first paint. Both are deliberate; see the comments in `layout.tsx` and `globals.css`.
 
 ## Next up
