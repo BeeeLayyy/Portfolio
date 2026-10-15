@@ -17,20 +17,47 @@ After each finished task or decision, update the plan board and decisions log, t
 
 - One branch per change. Every push gets a Vercel preview; only merges to `main` reach production.
 - After every push, give Brandon the preview link. Stable link for the current branch: `https://portfolio-git-<branch>-brandonlcfs2023-2984s-projects.vercel.app` (needs a Vercel login).
-- Use installed skills by lane: `design:design-system` and `frontend-design` (frontend), `design:ux-copy` (copy), `design:accessibility-review` and `design:design-critique` (QA, before calling a phase done). AnimatedWebs skills for motion in Phase 3.
-- Emil Kowalski skills are installed in `.claude/skills/` (from `emilkowalski/skills`, pinned in `skills-lock.json`). Use them for motion and polish:
-  - `emil-design-eng`, `animate`, `animation-vocabulary`: build any animation or interaction (Phase 3 hero, page transitions, project-row hover image).
-  - `find-animation-opportunities`, `improve-animations`: plan where motion should go before building it.
-  - `review-animations`, `animation-performance`: QA gate for every motion change, alongside `design:accessibility-review`.
-  - `break-ui`: stress-test components with long names, empty states and extreme content before a phase is done.
-  - `mobile-native`: phone polish in Phase 3 (tap highlights, 100vh, notch).
-  - `apple-design`, `pick-ui-library`, `prototype`: only when asked.
-  - Not used here: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (no toasts on this site).
-- 21st.dev component library is connected as an MCP server in `.mcp.json` (key read from the `API_KEY_21ST` environment variable; never commit the key). Use it to find or generate UI components, then restyle anything it returns with our tokens and `DESIGN.md` rules. Don't paste a component in with its own colors, fonts or easing.
-- Motion (the `motion` npm package, Motion for React) is the animation library for this site. The Motion AI Kit is installed: the `motion` skill in `.claude/skills/motion/`, the `motion-reviewer` agent in `.claude/agents/`, and two hosted MCP servers in `.mcp.json` (`motion` works signed out; `motion-plus` asks you to sign in to Motion+ the first time it's used). Use the `motion` skill when writing Motion code, and run `motion-reviewer` alongside `review-animations` in the Phase 3 gate.
-- Motion rules from these skills must still use our tokens in `globals.css` (`--ease-out-soft`, `--duration-*`) and respect reduced motion. Extend the tokens; never add a parallel set.
 - Narrate the "why" behind decisions at a level a smart beginner can follow. Keep replies brief and direct. Copy is concise and human, with no em dashes.
 - Run `npx next typegen` before `npx tsc --noEmit` when routes change. Local builds can fail fetching Google Fonts offline; Vercel builds fine.
+
+## Toolkit: skills and MCP servers
+
+Use these instead of freehanding. Everything here is installed in this repo, so it loads automatically.
+
+### MCP servers (`.mcp.json`)
+
+| Server | What it gives you | Setup |
+| --- | --- | --- |
+| `21st` | 21st.dev component library: search, fetch and generate UI components | Needs `API_KEY_21ST` in the environment. Never commit the key |
+| `motion` | Motion docs, examples, CSS spring generator | None, works signed out |
+| `motion-plus` | Motion+ extras, including the MotionScore performance audit | Signs in to Motion+ on first use |
+
+### Skills by lane
+
+| Lane | Skill | Use it for |
+| --- | --- | --- |
+| Frontend | `design:design-system` | Changing or extending tokens in `globals.css` and `DESIGN.md` |
+| Frontend | `frontend-design` | Layout and component design |
+| Frontend | `motion` (Motion AI Kit) | Writing any code with the `motion` package (Motion for React) |
+| Frontend | `emil-design-eng`, `animate`, `animation-vocabulary` | Building animations: Phase 3 hero, page transitions, project-row hover image |
+| Frontend | `find-animation-opportunities`, `improve-animations` | Planning where motion goes before building it |
+| Frontend | `mobile-native` | Phone polish: tap highlights, 100vh, the notch |
+| Frontend | AnimatedWebs (`animatedwebs-hero`, `-backgrounds`, `-components`, `-style`) | Cinematic hero and backgrounds, if available in the session |
+| Frontend | `apple-design`, `pick-ui-library`, `prototype` | Only when Brandon asks |
+| Data | `design:ux-copy` | Every line of site copy, buttons, empty states, 404 |
+| QA | `design:design-critique` | Visual review before a phase is called done |
+| QA | `design:accessibility-review` | Contrast, keyboard, focus, reduced motion |
+| QA | `review-animations`, `animation-performance` | Gate for every motion change |
+| QA | `motion-reviewer` agent (`.claude/agents/`) | MotionScore audit across the whole site at the Phase 3 gate |
+| QA | `break-ui` | Stress-test components with long names, empty states, extreme content |
+
+Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (toasts).
+
+### Rules for every tool
+
+- Anything from 21st.dev, Motion or an animation skill gets restyled with our tokens and `DESIGN.md`. Extend `--ease-out-soft` and `--duration-*`; never add a parallel set of colors, fonts or easings.
+- Every animation respects reduced motion.
+- Installed skills come from `emilkowalski/skills` (pinned in `skills-lock.json`) and the Motion AI Kit (`npx motion-ai`). Update them with `npx skills update` and by re-running `npx motion-ai`.
 
 ## Decisions so far
 
