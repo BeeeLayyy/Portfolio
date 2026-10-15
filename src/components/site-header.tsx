@@ -23,11 +23,11 @@ export function SiteHeader() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={
+                    className={`inline-block py-2 ${
                       active
                         ? "text-lamp"
                         : "text-paper-muted transition-colors duration-(--duration-quick) hover:text-paper"
-                    }
+                    }`}
                   >
                     {item.label}
                   </Link>

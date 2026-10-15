@@ -8,13 +8,13 @@ export function SiteFooter() {
         <ul className="flex gap-6">
           {socials.map((s) => (
             <li key={s.href}>
-              <a href={s.href} className="hover:text-paper">
+              <a href={s.href} className="inline-block py-2 hover:text-paper">
                 {s.label}
               </a>
             </li>
           ))}
           <li>
-            <a href={`mailto:${site.email}`} className="hover:text-paper">
+            <a href={`mailto:${site.email}`} className="inline-block py-2 hover:text-paper">
               Email
             </a>
           </li>

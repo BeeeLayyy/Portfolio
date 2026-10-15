@@ -15,7 +15,7 @@ export default function Home() {
       <section aria-labelledby="hero-name" className="relative border-b border-rule">
         <h1
           id="hero-name"
-          className="overflow-hidden whitespace-nowrap px-6 pt-16 text-center font-serif text-display md:pt-24"
+          className="overflow-hidden whitespace-nowrap px-6 pt-16 pb-8 text-center font-serif text-display md:pt-24 md:pb-4"
         >
           {site.name}
         </h1>
@@ -40,7 +40,7 @@ export default function Home() {
       </Section>
 
       <Section title="Projects" href="/projects" linkLabel="All projects">
-        <ul className="border-t border-rule">
+        <ul className="-mt-8">
           {featured.map((p) => (
             <ProjectRow key={p.slug} project={p} />
           ))}
