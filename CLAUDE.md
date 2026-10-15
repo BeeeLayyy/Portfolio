@@ -64,7 +64,7 @@ Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `as
 
 ## Decisions so far
 
-D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). D11 name Nike and Coca-Cola publicly. D12 resume button links to LinkedIn (the PDF has a phone number). Open: D7 custom domain (by Phase 4).
+D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). D11 name Nike and Coca-Cola publicly. D12 resume button links to LinkedIn (the PDF has a phone number). D7 custom domain brandonle.site (bought through Vercel Oct 15; set as `site.url` and `metadataBase`). D13 keep Newsreader optical sizes, load the italic after first paint.
 
 ## Where things stand (Oct 15, 2026)
 
@@ -76,4 +76,4 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 ## Next up
 
 1. After Courtside's Oct 28 public launch: add real numbers (weekly returning visitors) to its outcome, update the Courtside item in Now, and retake the screenshot (desktop and the phone row both use it).
-2. Phase 4: custom domain (D7, then set `metadataBase` in the layout), analytics, phone smoke test.
+2. Phase 4 (in progress): brandonle.site bought, `metadataBase` set, Vercel Analytics and Speed Insights on. Left: confirm the domain loads over HTTPS once DNS spreads, www redirect, share card in LinkedIn and iMessage, a visit in Analytics, phone smoke test, then Brandon adds the URL to LinkedIn, resume and email signature.

@@ -35,10 +35,11 @@ const plexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
-  // The share image is app/opengraph-image.png. Its absolute URL comes from
-  // Vercel's own domain until D7 picks a custom one; then set metadataBase.
+  // The share image is app/opengraph-image.png; metadataBase turns its path
+  // into a full https://brandonle.site URL.
   openGraph: { siteName: site.name, type: "website", locale: "en_US" },
   twitter: { card: "summary_large_image" },
 };
