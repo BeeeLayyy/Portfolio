@@ -12,7 +12,7 @@ export default function AboutPage() {
       <PageHeader title="About" intro={site.bio[0]} />
       <Container>
         <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-start md:gap-16">
-          <div className="order-2 max-w-prose space-y-6 text-lg text-paper-muted md:order-1">
+          <div className="order-2 max-w-prose space-y-6 text-lg text-ink-muted md:order-1">
             {site.bio.slice(1).map((p) => (
               <p key={p}>{p}</p>
             ))}
@@ -32,7 +32,7 @@ export default function AboutPage() {
           {goals.map((g, i) => (
             <li key={`${g.title}-${i}`}>
               <h3 className="text-lg font-medium">{g.title}</h3>
-              <p className="mt-2 text-paper-muted">{g.detail}</p>
+              <p className="mt-2 text-ink-muted">{g.detail}</p>
             </li>
           ))}
         </ul>

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
@@ -34,6 +34,15 @@ const plexSans = IBM_Plex_Sans({
   weight: ["400", "500", "600"],
 });
 
+// Numbers, dates and labels: monospaced, so figures and dates line up like a
+// terminal. Below the first screen, so it isn't preloaded.
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: site.name, template: `%s | ${site.name}` },
@@ -45,9 +54,9 @@ export const metadata: Metadata = {
 };
 
 // Phone status bar matches the page. The site is dark only, so one color:
-// --color-ledger in globals.css (metadata can't read CSS variables).
+// --color-canvas in globals.css (metadata can't read CSS variables).
 export const viewport: Viewport = {
-  themeColor: "#0f1f1a",
+  themeColor: "#070d18",
   colorScheme: "dark",
 };
 
@@ -55,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${newsreaderItalic.variable} ${plexSans.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${newsreaderItalic.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
       suppressHydrationWarning // the script below may set data-hero before React loads
     >
       <head>
@@ -70,7 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-lamp focus:px-4 focus:py-2 focus:text-ledger"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-accent focus:px-4 focus:py-2 focus:text-canvas"
         >
           Skip to content
         </a>

@@ -25,8 +25,8 @@ export function SiteHeader() {
                     aria-current={active ? "page" : undefined}
                     className={`inline-block py-2 select-none ${
                       active
-                        ? "text-lamp"
-                        : "text-paper-muted transition-colors duration-(--duration-quick) hover:text-paper"
+                        ? "text-accent"
+                        : "text-ink-muted transition-colors duration-(--duration-quick) hover:text-ink"
                     }`}
                   >
                     {item.label}

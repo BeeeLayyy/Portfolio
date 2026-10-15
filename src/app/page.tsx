@@ -29,11 +29,11 @@ export default function Home() {
         <div className="hero-split grid md:grid-cols-2">
           <div className="hero-half hero-half-start border-b border-rule p-6 md:border-r md:border-b-0 md:p-16" style={{ "--i": 0 } as React.CSSProperties}>
             <h2 className="hero-title w-fit font-serif-italic text-3xl italic">{site.finance.title}</h2>
-            <p className="mt-4 max-w-sm text-paper-muted">{site.finance.line}</p>
+            <p className="mt-4 max-w-sm text-ink-muted">{site.finance.line}</p>
           </div>
           <div className="hero-half p-6 md:p-16" style={{ "--i": 1 } as React.CSSProperties}>
             <h2 className="hero-title w-fit font-sans text-3xl font-medium tracking-tight">{site.data.title}</h2>
-            <p className="mt-4 max-w-sm text-paper-muted">{site.data.line}</p>
+            <p className="mt-4 max-w-sm text-ink-muted">{site.data.line}</p>
           </div>
         </div>
       </section>

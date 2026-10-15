@@ -37,22 +37,22 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   return (
     <article>
       <Container className="pt-16 pb-12 md:pt-24">
-        <Link href="/projects" className="inline-block py-1 text-sm text-paper-muted hover:text-lamp">
+        <Link href="/projects" className="inline-block py-1 text-sm text-ink-muted hover:text-accent">
           All projects
         </Link>
         <h1 className="mt-6 font-serif text-3xl">{project.title}</h1>
-        <p className="mt-6 max-w-prose text-lg text-paper-muted">{project.oneLiner}</p>
+        <p className="mt-6 max-w-prose text-lg text-ink-muted">{project.oneLiner}</p>
         <dl className="mt-10 grid gap-6 border-y border-rule py-6 text-sm sm:grid-cols-3">
           <div>
-            <dt className="text-paper-muted">Role</dt>
+            <dt className="text-ink-muted">Role</dt>
             <dd className="mt-1">{project.role}</dd>
           </div>
           <div>
-            <dt className="text-paper-muted">Year</dt>
+            <dt className="text-ink-muted">Year</dt>
             <dd className="mt-1">{project.year}</dd>
           </div>
           <div>
-            <dt className="text-paper-muted">Built with</dt>
+            <dt className="text-ink-muted">Built with</dt>
             <dd className="mt-1 flex flex-wrap gap-2">
               {project.stack.length ? project.stack.map((s) => <Tag key={s}>{s}</Tag>) : "To be added"}
             </dd>
@@ -78,12 +78,12 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
               width={1600}
               height={900}
               sizes="(min-width: 1280px) 1072px, 100vw"
-              className="aspect-video w-full rounded-media bg-ledger-raised"
+              className="aspect-video w-full rounded-media bg-surface"
               preload
             />
           </ViewTransition>
         ) : (
-          <div className="aspect-video rounded-media bg-ledger-raised" role="img" aria-label={`${project.title} preview, coming soon`} />
+          <div className="aspect-video rounded-media bg-surface" role="img" aria-label={`${project.title} preview, coming soon`} />
         )}
       </Container>
 

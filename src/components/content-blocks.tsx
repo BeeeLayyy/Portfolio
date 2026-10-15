@@ -14,11 +14,11 @@ export function ProjectRow({ project }: { project: Project }) {
         transitionName={projectImageTransition(project.slug)}
         className="group grid gap-2 py-6 md:grid-cols-[1fr_2fr_auto] md:items-baseline md:gap-8"
       >
-        <span className="font-serif text-xl transition-colors duration-(--duration-quick) group-hover:text-lamp">
+        <span className="font-serif text-xl transition-colors duration-(--duration-quick) group-hover:text-accent">
           {project.title}
         </span>
-        <span className="text-paper-muted">{project.oneLiner}</span>
-        <span className="text-sm text-paper-muted">{project.year}</span>
+        <span className="text-ink-muted">{project.oneLiner}</span>
+        <span className="font-mono text-sm text-ink-muted">{project.year}</span>
       </ProjectRowLink>
     </li>
   );
@@ -38,18 +38,18 @@ export function RoleItem({
   const Heading = `h${headingLevel}` as const;
   return (
     <li className="grid gap-3 border-b border-rule py-8 md:grid-cols-[12rem_1fr] md:gap-8">
-      <p className="text-sm text-paper-muted">
+      <p className="font-mono text-sm text-ink-muted">
         {role.start} to {role.end}
       </p>
       <div>
         <Heading className="text-lg font-medium">
           {role.title}, {role.company}
         </Heading>
-        <p className="text-paper-muted">
+        <p className="text-ink-muted">
           {role.team === role.title.replace(/ Intern$/, "") ? role.location : `${role.team}, ${role.location}`}
         </p>
         {detailed ? (
-          <ul className="mt-4 max-w-prose list-disc space-y-2 pl-5 marker:text-paper-muted">
+          <ul className="mt-4 max-w-prose list-disc space-y-2 pl-5 marker:text-ink-muted">
             {role.highlights.map((h) => (
               <li key={h}>{h}</li>
             ))}
@@ -72,9 +72,9 @@ export function RoleItem({
 export function NowCard({ item, headingLevel = 3 }: { item: NowItem; headingLevel?: 2 | 3 }) {
   const Heading = `h${headingLevel}` as const;
   return (
-    <li className="rounded-media bg-ledger-raised p-6">
+    <li className="rounded-media bg-surface p-6">
       <Heading className="text-lg font-medium">{item.title}</Heading>
-      <p className="mt-2 text-paper-muted">{item.detail}</p>
+      <p className="mt-2 text-ink-muted">{item.detail}</p>
     </li>
   );
 }

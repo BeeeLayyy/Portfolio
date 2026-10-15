@@ -52,7 +52,7 @@ Use these instead of freehanding. Everything here is installed in this repo, so 
 | QA | `break-ui` | Stress-test components with long names, empty states, extreme content |
 | All | `impeccable` (`/impeccable <command> <target>`) | Design commands on a page or component: `critique` and `audit` (QA), `polish`, `typeset`, `layout`, `quieter`/`bolder`, `distill`, `harden`, `animate`, `delight` (frontend), `clarify` (copy). Example: `/impeccable critique src/app/page.tsx` |
 
-`impeccable` reads our `DESIGN.md` for context. Use it for refinement only: it must keep the Banker's lamp palette, fonts and copy. Never let it "redesign" or rewrite `DESIGN.md` unless Brandon asks. Its launcher downloads a helper program once from the author's GitHub releases and checks its checksum before running it.
+`impeccable` reads our `DESIGN.md` for context. Use it for refinement only: it must keep the Horizon Night palette (D14), fonts and copy. Never let it "redesign" or rewrite `DESIGN.md` unless Brandon asks. Its launcher downloads a helper program once from the author's GitHub releases and checks its checksum before running it.
 
 Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `ask-sonner` (toasts).
 
@@ -64,7 +64,7 @@ Not used on this site: `animate-expo` (React Native), `write-swift` (Swift), `as
 
 ## Decisions so far
 
-D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). D11 name Nike and Coca-Cola publicly. D12 resume button links to LinkedIn (the PDF has a phone number). D7 custom domain brandonle.site (bought through Vercel Oct 15; set as `site.url` and `metadataBase`). D13 keep Newsreader optical sizes, load the italic after first paint.
+D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, Now, Contact). D3 motion-heavy; palette "Banker's lamp" (dark ledger green, one amber accent, Newsreader serif for finance, IBM Plex Sans for data; a baby blue, white and red version was tried and dropped). Home hero leads with the finance-versus-data split. D4 sections: Hero, Now, Projects, Experience, Goals, Toolkit, Contact. D5 GitHub to Vercel, previews per branch. D6 public repo. D8 content as TypeScript files. D9 experience matches the public resume and LinkedIn, nothing beyond it. D10 feature Courtside only (https://courtside-ecru.vercel.app). D11 name Nike and Coca-Cola publicly. D12 resume button links to LinkedIn (the PDF has a phone number). D7 custom domain brandonle.site (bought through Vercel Oct 15; set as `site.url` and `metadataBase`). D13 keep Newsreader optical sizes, load the italic after first paint. D14 palette "Horizon Night" replaces Banker's lamp (near-black navy, one blue accent near but not equal to SAP blue, data colors only in charts; IBM Plex Mono for numbers, dates and tags). D15 Home hero becomes a 3D data scene inspired by lusion.co: loads after the text, still image on phones and with reduced motion.
 
 ## Where things stand (Oct 15, 2026)
 

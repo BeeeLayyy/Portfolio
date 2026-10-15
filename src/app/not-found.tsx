@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <Container className="py-32">
       <h1 className="font-serif text-3xl">This page doesn&apos;t exist</h1>
-      <p className="mt-6 max-w-prose text-paper-muted">
+      <p className="mt-6 max-w-prose text-ink-muted">
         The link may be old or mistyped. Head back to the home page to find what you were after.
       </p>
       <div className="mt-10">

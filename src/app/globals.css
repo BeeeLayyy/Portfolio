@@ -1,25 +1,34 @@
 @import "tailwindcss";
 
 /*
-  Design tokens: "Banker's lamp"
-  A dark ledger-green room lit by one amber lamp. Finance is set in a serif
-  (Newsreader), data in a grotesk (IBM Plex Sans). See DESIGN.md for rules.
+  Design tokens: "Horizon Night" (D14, replacing "Banker's lamp")
+  A near-black navy room lit by one blue light. The hero headline is set in a
+  serif (Newsreader), body in a grotesk (IBM Plex Sans), numbers, dates and
+  labels in IBM Plex Mono. See DESIGN.md for rules.
   Every color, size, space and timing on the site comes from this block.
 */
 
 @theme {
-  /* Color: one base family, one accent */
-  --color-ledger: #0f1f1a;        /* page background */
-  --color-ledger-raised: #172c25; /* cards, raised surfaces */
-  --color-rule: #2c4a40;          /* dividers and borders (decorative only) */
-  --color-paper: #ede6d6;         /* primary text, 13.7:1 on ledger */
-  --color-paper-muted: #9fb3aa;   /* secondary text, 7.7:1 on ledger */
-  --color-lamp: #f2a93b;          /* the one accent, 8.5:1 on ledger */
+  /* Color: "Horizon Night" (D14). A near-black navy shell, one blue light,
+     and data colors that appear only in charts and numbers. */
+  --color-canvas: #070d18;        /* page background */
+  --color-surface: #0f1b2d;       /* cards, raised surfaces */
+  --color-rule: #1d2d3e;          /* dividers and borders (decorative only) */
+  --color-ink: #eaf1fa;           /* primary text, 17.1:1 on canvas */
+  --color-ink-muted: #9aaec4;     /* secondary text, 8.5:1 on canvas, 7.6:1 on surface */
+  --color-accent: #5aacff;        /* the one accent: links, active nav, glow, focus; 8.1:1 */
+  --color-accent-strong: #1a5fd6; /* primary button fill; ink on it is 5.1:1 */
+  --color-accent-strong-hover: #2563eb; /* primary button hover; ink on it is 4.5:1 */
+  --color-gain: #3fcb7a;          /* data only: up, positive (9.3:1) */
+  --color-loss: #ff6b6b;          /* data only: down, errors (7.0:1); never decoration */
+  --color-critical: #ff9a3d;      /* data only: warning (9.2:1) */
+  --color-flat: #788fa6;          /* data only: unchanged, baseline (5.8:1) */
 
   /* Type families: the split hero's two sides */
   --font-serif: var(--font-newsreader), Georgia, serif;     /* finance */
   --font-serif-italic: var(--font-newsreader-italic), Georgia, serif; /* finance, italic: its own file, loaded after first paint */
   --font-sans: var(--font-plex-sans), system-ui, sans-serif; /* data */
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace; /* numbers, dates, labels */
 
   /* Type scale: 1.25 ratio from a 17px body; display sizes grow with the screen */
   --text-sm: 0.8125rem;
@@ -58,8 +67,8 @@
 }
 
 html {
-  background: var(--color-ledger);
-  color: var(--color-paper);
+  background: var(--color-canvas);
+  color: var(--color-ink);
   color-scheme: dark;
   -webkit-tap-highlight-color: transparent; /* no gray flash on tap; links get :active below */
   -webkit-text-size-adjust: 100%; /* no font inflation in landscape */
@@ -88,12 +97,12 @@ body {
 }
 
 ::selection {
-  background: var(--color-lamp);
-  color: var(--color-ledger);
+  background: var(--color-accent);
+  color: var(--color-canvas);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-lamp);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: var(--radius-tag);
 }
@@ -200,7 +209,7 @@ body {
   right: 0;
   bottom: -0.15em;
   height: 2px;
-  background: var(--color-lamp);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--duration-base) var(--ease-out-soft);
