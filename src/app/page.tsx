@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { NowCard, ProjectRow, RoleItem } from "@/components/content-blocks";
+import { ByTheNumbers, NowCard, ProjectRow, RoleItem } from "@/components/content-blocks";
 import { HeroPlayed } from "@/components/hero-played";
 import { HeroScene } from "@/components/hero-scene/hero-scene";
 import { LetterRoll, RevealText } from "@/components/motion/reveal-text";
@@ -214,8 +214,9 @@ export default function Home() {
           </Section>
 
           <Section title="Experience" href="/experience" linkLabel="Full experience">
-            <ul>
-              {roles.slice(0, 2).map((r) => (
+            <ByTheNumbers headingLevel={3} />
+            <ul className="mt-12 border-t border-rule">
+              {roles.map((r) => (
                 <RoleItem key={`${r.company}-${r.team}`} role={r} />
               ))}
             </ul>

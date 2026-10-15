@@ -1,7 +1,9 @@
+import { experienceStats } from "@/content/experience";
 import { projectImageTransition } from "@/content/projects";
 import { ProjectRowLink } from "./project-row-link";
 import type { NowItem, Project, Role } from "@/content/types";
 import type { CSSProperties } from "react";
+import { CountUp } from "./motion/count-up";
 import { Scramble } from "./motion/scramble";
 import { Tag } from "./ui";
 
@@ -76,7 +78,12 @@ export function RoleItem({
             ))}
           </ul>
         ) : (
-          <p className="mt-3 max-w-prose">{role.summary}</p>
+          <>
+            <p className="mt-3 max-w-prose">{role.summary}</p>
+            {role.keyHighlight !== undefined && role.highlights[role.keyHighlight] && (
+              <p className="mt-2 max-w-prose text-ink-muted">{role.highlights[role.keyHighlight]}</p>
+            )}
+          </>
         )}
         {role.skills.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
@@ -97,5 +104,31 @@ export function NowCard({ item, headingLevel = 3, index = 0 }: { item: NowItem; 
       <Heading className="text-lg font-medium">{item.title}</Heading>
       <p className="mt-2 text-ink-muted">{item.detail}</p>
     </li>
+  );
+}
+
+// "By the numbers" (D19): figures straight from the role highlights, counting
+// up as they scroll in. Leads the Experience page and sits in Home's
+// Experience section, where the heading drops a level.
+export function ByTheNumbers({ headingLevel = 2 }: { headingLevel?: 2 | 3 }) {
+  const Heading = `h${headingLevel}` as const;
+  const id = `numbers-title-${headingLevel}`;
+  return (
+    <section aria-labelledby={id}>
+      <Heading id={id} className="font-mono text-sm tracking-wide text-ink-muted uppercase">
+        By the numbers
+      </Heading>
+      <dl className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        {experienceStats.map((s, i) => (
+          // Label first in the markup (dt before dd); the figure shows on top.
+          <div key={s.label} className="flex flex-col-reverse" data-reveal="rise" style={{ "--i": i } as CSSProperties}>
+            <dt className="mt-3 text-ink-muted">{s.label}</dt>
+            <dd className="font-mono text-[clamp(2.75rem,5vw,4.25rem)] leading-none">
+              <CountUp value={s.value} />
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

@@ -36,6 +36,7 @@ export type Role = {
   end: string; // "Present" for current roles
   summary: string; // one line, shown on the home page
   highlights: string[]; // shown on the Experience page
+  keyHighlight?: number; // which highlight Home shows under the summary
   skills: string[];
 };
 

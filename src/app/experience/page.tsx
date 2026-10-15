@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
-import { CountUp } from "@/components/motion/count-up";
+import { ByTheNumbers } from "@/components/content-blocks";
 import { RevealText } from "@/components/motion/reveal-text";
 import { Container, PageHeader, Tag } from "@/components/ui";
-import { experienceStats, roles } from "@/content/experience";
+import { roles } from "@/content/experience";
 import { pageDescriptions } from "@/content/site";
 
 export const metadata: Metadata = { title: "Experience", description: pageDescriptions.experience };
@@ -21,22 +20,9 @@ export default function ExperiencePage() {
       />
 
       <Container>
-        <section aria-labelledby="numbers-title" className="border-t border-rule pt-10">
-          <h2 id="numbers-title" className="font-mono text-sm tracking-wide text-ink-muted uppercase">
-            By the numbers
-          </h2>
-          <dl className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {experienceStats.map((s, i) => (
-              // Label first in the markup (dt before dd); the figure shows on top.
-              <div key={s.label} className="flex flex-col-reverse" data-reveal="rise" style={{ "--i": i } as CSSProperties}>
-                <dt className="mt-3 text-ink-muted">{s.label}</dt>
-                <dd className="font-mono text-[clamp(2.75rem,5vw,4.25rem)] leading-none">
-                  <CountUp value={s.value} />
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+        <div className="border-t border-rule pt-10">
+          <ByTheNumbers />
+        </div>
       </Container>
 
       <Container className="py-24">

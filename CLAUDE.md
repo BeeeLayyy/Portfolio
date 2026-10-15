@@ -73,6 +73,7 @@ D1 Next.js. D2 multi-page (Home, Projects, project detail, Experience, About, No
 - `/projects/[slug]` sets `instant = false` on purpose: streaming it behind Suspense turned unknown-slug 404s into 200s. See the comment in that file.
 - D14 to D19 merged to `main` and live Oct 15: Horizon Night, 3D hero, Lusion motion, personal scene with cursor warp, short title with portrait section and living background, inner pages in the Home style, share image and Person data. Live Lighthouse: Home phone 93, desktop 97; Experience phone 96; 100 for accessibility, best practices and SEO. Local `next start` runs score phones lower (about 81 to 86) because there's no CDN; trust the live numbers.
 - D20 live Oct 15: Notes in the menu (no posts published yet; "How I built this site" is a draft for Brandon to rewrite), Off the clock on About with three starter interests, project template.
+- Recruiter-review quick fixes (Oct 15): "By the numbers" and all three roles (each with one result line) on Home, TCIO spelled out, "Let's talk" in the phone header.
 - Fonts: Newsreader italic is a separate, non-preloaded font (`font-serif-italic`), and the hero's `rise-in` starts at 1% opacity, not 0, so Largest Contentful Paint counts at first paint. Both are deliberate; see the comments in `layout.tsx` and `globals.css`.
 
 ## Adding content (D20)

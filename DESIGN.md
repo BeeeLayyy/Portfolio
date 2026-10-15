@@ -67,7 +67,7 @@ In use (D16, modeled on lusion.co):
 
 - **Intro**, first page of a visit only, never with reduced motion: a blue screen counts 000 to 100 on rolling odometer digits while a bar fills, the name rolls up, then the screen splits on its diagonal and slides off to the corners. Pure CSS, click-through.
 - **Hero**: a one-sentence title whose words rise with a slight tilt, the 3D card (D15), and a "Scroll to explore" row of + marks whose label rolls on a loop.
-- **Header**: fixed, frosted once scrolled. "Let's talk" pill (dot shrinks, label slides, arrow slides in) and a Menu pill (label rolls to "Close", dots turn) that opens a card of links with a soft bubble, rolling label and arrow on hover. Both pills pop in.
+- **Header**: fixed, frosted once scrolled. "Let's talk" pill (dot shrinks, label slides, arrow slides in) and a Menu pill (label rolls to "Close", dots turn) that opens a card of links with a soft bubble, rolling label and arrow on hover. Both pills pop in. Both show on phones too; under 40rem the talk pill drops its dot, and under 24rem the pills slim down so the name and both fit at 320px.
 - **Scroll reveals**: titles rise word by word out of their lines; paragraphs brighten word by word; cards scale in; rows rise in, staggered.
 - **Pill buttons**: on hover a dot swells to fill the pill, the label slides over, an arrow slides in. 97% scale while pressed.
 - **Showcase**: the featured project's screenshot grows from a thumbnail to full width as it scrolls in (scroll-driven CSS); its name rolls letter by letter on hover.
@@ -106,7 +106,7 @@ The hero title is just "Brandon Le's portfolio", large, in Newsreader. The next 
 
 Every inner page opens the same way (`PageHeader`): a mono eyebrow, a big Newsreader title whose words rise in, and an intro that brightens word by word.
 
-- **Experience:** "By the numbers" (figures from the resume highlights, in `experienceStats`) count up as they scroll in (`CountUp`, `--duration-count`), then a timeline whose line draws itself with scroll; each role is a card with its dates and company pinned on the left on desktop.
+- **Experience:** "By the numbers" (figures from the resume highlights, in `experienceStats`) count up as they scroll in (`CountUp`, `--duration-count`), then a timeline whose line draws itself with scroll; each role is a card with its dates and company pinned on the left on desktop. Home's Experience section repeats "By the numbers" (`ByTheNumbers`) above all three roles, each with its summary and one result line (`keyHighlight`, picked so it doesn't repeat a figure above).
 - **About:** the bio beside a pinned portrait, goals as numbered cards, and the toolkit grouped by use (`site.toolkit` groups).
 - **Now:** a numbered list in big type.
 - **Project pages:** the title with the one-liner, facts and link beside it; the lead screenshot between rows of + marks, as wide as the text and never taller than the screen (so all of it is visible without zooming out), settling to full size as it scrolls in; then numbered chapters (The problem, What I built, What came of it) with the label pinned on the left and the text one size up from body on the right. Layout only; the words stay in `projects.ts`.
