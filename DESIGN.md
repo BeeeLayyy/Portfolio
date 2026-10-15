@@ -54,10 +54,26 @@ Radius follows role, not one value everywhere: `rounded-tag` 2px (skill tags), `
 | `--duration-hero` | 1100ms | The one orchestrated hero moment |
 | `--duration-morph` | 400ms | An element moving between pages (project screenshot) |
 | `--stagger` | 60ms | Gap between items entering in sequence |
-| `--hero-follow` | 200ms | When the hero halves start, after the name |
+| `--hero-follow` | 200ms | When the hero card starts, after the title's words |
+| `--duration-reveal` | 900ms | Words rising out of their line as a section scrolls in |
+| `--duration-intro` | 2200ms | First-visit intro (count, name, diagonal wipe) |
+| `--intro-offset` | 1800ms | When the hero entrance starts under the intro's wipe |
 | `ease-out-soft` | cubic-bezier(0.16, 1, 0.3, 1) | Things arriving |
 | `ease-in-out-soft` | cubic-bezier(0.65, 0, 0.35, 1) | Things moving across |
 
-Rules: one orchestrated moment per page; everything else moves only in answer to the visitor (hover, scroll, click). Reduced-motion settings turn every animation into an instant change, with no delay (handled globally in `globals.css`).
+Rules (D16, Lusion-style motion): one orchestrated moment per visit (the intro, then the hero); everything else moves only in answer to the visitor (hover, scroll, click). Reduced-motion settings turn every animation into an instant change, with no delay (handled globally in `globals.css`).
 
-In use: the home hero entrance (name rises in word by word, halves rise in after it, once per session), a 280ms fade and 8px rise when a new page opens from a link (not on first load, nothing on exit), buttons shrink to 97% while pressed, the project screenshot morphs from its Projects row into the project page (view transition, 400ms), and text links ease their hover color over 140ms.
+In use (D16, modeled on lusion.co):
+
+- **Intro**, first page of a visit only, never with reduced motion: a blue screen counts 000 to 100 on rolling odometer digits while a bar fills, the name rolls up, then the screen splits on its diagonal and slides off to the corners. Pure CSS, click-through.
+- **Hero**: a one-sentence title whose words rise with a slight tilt, the 3D card (D15), and a "Scroll to explore" row of + marks whose label rolls on a loop.
+- **Header**: fixed, frosted once scrolled. "Let's talk" pill (dot shrinks, label slides, arrow slides in) and a Menu pill (label rolls to "Close", dots turn) that opens a card of links with a soft bubble, rolling label and arrow on hover. Both pills pop in.
+- **Scroll reveals**: titles rise word by word out of their lines; paragraphs brighten word by word; cards scale in; rows rise in, staggered.
+- **Pill buttons**: on hover a dot swells to fill the pill, the label slides over, an arrow slides in. 97% scale while pressed.
+- **Showcase**: the featured project's screenshot grows from a thumbnail to full width as it scrolls in (scroll-driven CSS); its name rolls letter by letter on hover.
+- **Ribbon**: a blue line draws itself down the Home page with scroll.
+- **Project rows**: an arrow slides in before the title and the stack line re-types itself (text decode) on hover; the screenshot follows the cursor; it morphs into the project page (view transition).
+- **End section**, every page but Contact: the page warms from navy to blue, "Let's work together!" rises in and its rules draw from the left, "Keep scrolling" rolls.
+- **Scroll to next page**: at the bottom, a bar fills; keep scrolling with a mouse and the next page opens. Always a plain link too.
+- **Smooth scroll** (Lenis, mouse only) with a scroll indicator on the right edge that stretches with speed, and a soft blue **cursor trail** (mouse only).
+- Page changes fade in over 280ms; footer links underline from the left; Back to top rolls its arrow.

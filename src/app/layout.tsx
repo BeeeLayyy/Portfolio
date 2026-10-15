@@ -2,6 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { EndSection } from "@/components/end-section";
+import { CursorTrail } from "@/components/motion/cursor-trail";
+import { Intro } from "@/components/motion/intro";
+import { RevealObserver } from "@/components/motion/reveal-observer";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { ScrollNav } from "@/components/scroll-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
@@ -68,11 +74,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning // the script below may set data-hero before React loads
     >
       <head>
-        {/* Skip the hero entrance if it already played this session. Runs
-            before first paint, so the name never flashes in twice. */}
+        {/* Runs before first paint:
+            - data-js: JavaScript is on, so scroll reveals may start hidden.
+            - data-hero: skip the Home entrance if it already played this visit.
+            - data-intro: play the intro (D16) on the first page of a visit,
+              never with reduced motion; "done" once it's over, so later
+              pages don't wait for it. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem("hero-played"))document.documentElement.dataset.hero="played"}catch(e){}`,
+            __html: `(function(){var d=document.documentElement;d.dataset.js="";try{if(sessionStorage.getItem("hero-played"))d.dataset.hero="played";var r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!r&&!sessionStorage.getItem("intro-seen")){sessionStorage.setItem("intro-seen","1");d.dataset.intro="play";setTimeout(function(){d.dataset.intro="done"},3200)}}catch(e){}})()`,
           }}
         />
       </head>
@@ -83,11 +93,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <Intro />
         <SiteHeader />
-        <main id="main" tabIndex={-1} className="flex-1">
+        <main id="main" tabIndex={-1} className="flex-1 pt-header">
           {children}
         </main>
+        <EndSection />
         <SiteFooter />
+        <ScrollNav />
+        <RevealObserver />
+        <SmoothScroll />
+        <CursorTrail />
         {/* Vercel Web Analytics (visits, no cookies) and Speed Insights (real
             visitors' load times). Both only send data on Vercel deployments
             once they're switched on in the project's dashboard. */}

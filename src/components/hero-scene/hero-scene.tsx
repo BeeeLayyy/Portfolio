@@ -22,7 +22,7 @@ const still = getImageProps({
   sizes: "(min-width: 1280px) 1072px, 100vw",
 }).props;
 
-export function HeroScene() {
+export function HeroScene({ className = "aspect-[4/3] md:aspect-[21/9]" }: { className?: string }) {
   const stillRef = useRef<HTMLCanvasElement>(null);
   const liveRef = useRef<HTMLCanvasElement>(null);
   const [stillShown, setStillShown] = useState(false);
@@ -98,7 +98,7 @@ export function HeroScene() {
   return (
     <div
       aria-hidden
-      className="hero-scene relative aspect-[4/3] overflow-hidden rounded-media md:aspect-[21/9]"
+      className={`hero-scene relative overflow-hidden rounded-media ${className}`}
       data-still={stillShown}
       data-live={live}
     >

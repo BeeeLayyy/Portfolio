@@ -7,7 +7,10 @@ import { useEffect } from "react";
 // cleanup, so React's dev double-mount doesn't cut the entrance short.
 export function HeroPlayed() {
   useEffect(() => {
-    const ms = toMs(getComputedStyle(document.documentElement).getPropertyValue("--duration-hero"));
+    const root = getComputedStyle(document.documentElement);
+    // Under the first-visit intro the entrance starts later (--intro-offset).
+    const intro = document.documentElement.dataset.intro === "play" ? toMs(root.getPropertyValue("--intro-offset")) : 0;
+    const ms = toMs(root.getPropertyValue("--duration-hero")) + intro;
     const timer = setTimeout(() => {
       document.documentElement.dataset.hero = "played";
       try {

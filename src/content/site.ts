@@ -5,6 +5,21 @@ export const site = {
   url: "https://brandonle.site", // D7. Share links and the share image use it.
   description:
     "Finance and MIS at Villanova. Work, projects, and what I'm building now.",
+  // Home hero statement (D16, Lusion-style layout): one sentence under the
+  // header, above the 3D card.
+  heroLine:
+    "Brandon Le works where finance meets data, from balance sheets at JPMorgan Chase to revenue systems at SAP.",
+  // The section after the hero: a two-line title, a short paragraph, a link.
+  approach: {
+    title: ["Finance,", "built on data"],
+    line: "I study Finance and MIS at Villanova and graduate in May 2027. I like the work between the numbers and the systems that produce them.",
+    cta: { label: "About me", href: "/about" },
+  },
+  // Closing section on every page but Contact.
+  end: {
+    eyebrow: "Open to finance, product and data roles",
+    title: ["Let's work", "together"],
+  },
   finance: {
     title: "Finance",
     line: "Reconciled balance sheets for Treasury at JPMorgan Chase. Learned to read what the numbers say.",
@@ -23,6 +38,8 @@ export const site = {
     src: "/images/brandon-le.webp",
     alt: "Brandon Le in a navy suit, white shirt and striped tie",
   },
+  // Footer, under the name.
+  affiliation: ["Finance and MIS, Villanova University", "Class of 2027"],
   email: "ble02@villanova.edu",
   // The resume PDF lists a phone number, so the button points to LinkedIn instead.
   resume: { label: "Resume on LinkedIn", href: "https://www.linkedin.com/in/brandonle-vu/" },
