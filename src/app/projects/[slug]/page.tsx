@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
 import { ButtonLink, Container, Tag } from "@/components/ui";
-import { getProject, projects } from "@/content/projects";
+import { getProject, projectImageTransition, projects } from "@/content/projects";
 
 // This page awaits its slug before rendering so unknown slugs return a real
 // 404. Streaming behind <Suspense> would make navigation instant but turn
@@ -70,15 +71,17 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
       <Container>
         {project.image ? (
-          <Image
-            src={project.image.src}
-            alt={project.image.alt}
-            width={1600}
-            height={900}
-            sizes="(min-width: 1280px) 1072px, 100vw"
-            className="aspect-video w-full rounded-media bg-ledger-raised"
-            preload
-          />
+          <ViewTransition name={projectImageTransition(project.slug)} share="morph" default="none">
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              width={1600}
+              height={900}
+              sizes="(min-width: 1280px) 1072px, 100vw"
+              className="aspect-video w-full rounded-media bg-ledger-raised"
+              preload
+            />
+          </ViewTransition>
         ) : (
           <div className="aspect-video rounded-media bg-ledger-raised" role="img" aria-label={`${project.title} preview, coming soon`} />
         )}

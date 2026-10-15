@@ -29,6 +29,12 @@ export const projects: Project[] = [
   },
 ];
 
+// The view-transition name a project's screenshot carries on every page, so
+// the browser can morph it from the Projects row into the project page.
+export function projectImageTransition(slug: string) {
+  return `project-image-${slug}`;
+}
+
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
 }

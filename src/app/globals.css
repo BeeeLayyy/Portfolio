@@ -52,6 +52,7 @@
   --duration-base: 280ms;   /* menus, toggles */
   --duration-slow: 600ms;   /* page and section reveals */
   --duration-hero: 1100ms;  /* the one orchestrated hero moment */
+  --duration-morph: 400ms;  /* an element moving between pages */
   --stagger: 60ms;          /* gap between items entering in sequence */
   --hero-follow: 200ms;     /* when the hero halves start, after the name */
 }
@@ -103,11 +104,15 @@ body {
   outline: none;
 }
 
-/* Reduced motion: every animation collapses to an instant change */
+/* Reduced motion: every animation collapses to an instant change.
+   View-transition pseudo-elements aren't matched by *, so they're listed. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
-  *::after {
+  *::after,
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation-duration: 1ms !important;
     animation-delay: 0ms !important; /* no invisible wait before the instant change */
     animation-iteration-count: 1 !important;
@@ -222,5 +227,29 @@ body {
 
   .hero-split:has(.hero-half:hover) .hero-half:not(:hover) {
     opacity: 0.8;
+  }
+}
+
+/* Project screenshot morph (<ViewTransition share="morph">): the screenshot
+   grows from the Projects row (hover preview, or the phone row image) into
+   the project page. The browser's default whole-page crossfade is off, so
+   the page fade from template.tsx stays the only page-level motion. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-morph);
+  animation-timing-function: var(--ease-out-soft);
+}
+
+/* Links that only change color on hover ease like the nav does. In the base
+   layer, so buttons and nav links (Tailwind utilities) keep their own. */
+@layer base {
+  a {
+    transition-property: color, text-decoration-color;
+    transition-duration: var(--duration-quick);
+    transition-timing-function: ease;
   }
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import { useState, type ReactNode } from "react";
+import { useState, ViewTransition, type ReactNode } from "react";
 import type { Image as ProjectImage } from "@/content/types";
 
 // Preview size and gap from the cursor, in px. Matches w-80 and a 16:9 image.
@@ -18,11 +18,14 @@ const GAP = 24;
 export function ProjectRowLink({
   href,
   image,
+  transitionName,
   className,
   children,
 }: {
   href: string;
   image?: ProjectImage;
+  /** View-transition name shared with the project page's screenshot. */
+  transitionName?: string;
   className?: string;
   children: ReactNode;
 }) {
@@ -69,6 +72,22 @@ export function ProjectRowLink({
         onPointerLeave={() => setShown(false)}
       >
         {children}
+        {/* Without a mouse there's no hover preview, so the row shows the
+            screenshot itself (display: none with a mouse, so not downloaded).
+            It holds the shared name only while the preview doesn't: with two
+            named elements React could pair the hidden one and skip the morph. */}
+        {image && (
+          <ViewTransition name={shown ? undefined : transitionName} share="morph" default="none">
+            <Image
+              src={image.src}
+              alt=""
+              width={1600}
+              height={900}
+              sizes="(min-width: 768px) 1072px, 100vw"
+              className="mt-2 rounded-media ring-1 ring-rule pointer-fine:hidden md:col-span-3"
+            />
+          </ViewTransition>
+        )}
       </Link>
       {image && (
         <motion.div
@@ -78,7 +97,11 @@ export function ProjectRowLink({
         >
           <div className="project-preview w-80" data-shown={shown} data-side={side}>
             {/* Decorative: the same screenshot, with alt text, is on the project page. */}
-            <Image src={image.src} alt="" width={1600} height={900} sizes="320px" className="rounded-media ring-1 ring-rule" />
+            {/* Only claims the shared name while visible, so a keyboard click
+                (no hover) doesn't morph from an invisible preview. */}
+            <ViewTransition name={shown ? transitionName : undefined} share="morph" default="none">
+              <Image src={image.src} alt="" width={1600} height={900} sizes="320px" className="rounded-media ring-1 ring-rule" />
+            </ViewTransition>
           </div>
         </motion.div>
       )}
