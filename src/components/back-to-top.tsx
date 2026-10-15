@@ -1,5 +1,7 @@
 "use client";
 
+import { scrollToTop } from "./motion/smooth-scroll";
+
 // Lusion's footer button: the arrow rolls up and a copy rolls in on hover.
 export function BackToTop() {
   return (
@@ -7,8 +9,7 @@ export function BackToTop() {
       type="button"
       className="top-btn flex cursor-pointer items-center gap-2 py-2 uppercase hover:text-ink"
       onClick={() => {
-        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+        scrollToTop();
         document.getElementById("main")?.focus({ preventScroll: true });
       }}
     >

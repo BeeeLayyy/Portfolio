@@ -60,10 +60,17 @@ type Piece = {
   spin: Vector3;
 };
 
-const CURSOR_RADIUS = 3.2; // world units around the cursor that push pieces
-const CURSOR_FORCE = 30;
-const SPRING = 6; // pull back home
-const DAMPING = 3; // velocity lost per second
+// Physics, tuned to bounce like Lusion's: a soft spring home with little
+// damping (so pieces overshoot and wobble back), a cursor that hits with its
+// own speed, and collisions that ricochet instead of just separating.
+const CURSOR_RADIUS = 2.8; // world units around the cursor that count as a hit
+const CURSOR_PUSH = 45; // outward shove inside that radius, per second
+const CURSOR_CARRY = 4.5; // how much of the cursor's speed a hit piece takes
+const SPRING = 2.2; // pull back home
+const DAMPING = 1.1; // velocity lost per second: low, so pieces fly and wobble
+const RESTITUTION = 0.8; // bounciness when pieces hit each other (1 = no loss)
+const MAX_SPEED = 26;
+const BOUNDS = new Vector3(15, 6, 5); // soft walls: pieces bounce back inside
 const PAINT_SCALE = 0.25; // the warp trail is drawn at a quarter resolution
 
 function token(name: string) {
@@ -417,6 +424,10 @@ export function mountHeroScene(
   host.addEventListener("pointerleave", onPointerLeave);
 
   const push = new Vector3();
+  const normal = new Vector3();
+  const lastCursor = new Vector3();
+  const cursorVelocity = new Vector3();
+  let hadCursor = false;
   let last = performance.now();
   let frame = 0;
   let running = false;
@@ -427,6 +438,17 @@ export function mountHeroScene(
     const dt = Math.min((now - last) / 1000, 1 / 30); // clamp after tab switches
     last = now;
     const t = now / 1000;
+    // The cursor's own speed in world units, smoothed, so a fast flick hits
+    // harder than a slow drift.
+    if (cursorActive && hadCursor) {
+      push.copy(cursor).sub(lastCursor).divideScalar(Math.max(dt, 1 / 120));
+      cursorVelocity.lerp(push, 0.5);
+    } else {
+      cursorVelocity.set(0, 0, 0);
+    }
+    lastCursor.copy(cursor);
+    hadCursor = cursorActive;
+
     for (const piece of pieces) {
       const { object, home, velocity, spin } = piece;
       // Spring home, with a slow idle drift so the cluster breathes.
@@ -436,38 +458,60 @@ export function mountHeroScene(
         .multiplyScalar(SPRING);
       velocity.addScaledVector(push, dt);
       if (cursorActive) {
-        push.copy(object.position).sub(cursor);
-        push.z *= 0.3;
-        const distance = push.length();
-        if (distance < CURSOR_RADIUS && distance > 0.001) {
-          const strength = (1 - distance / CURSOR_RADIUS) * CURSOR_FORCE;
-          velocity.addScaledVector(push.normalize(), strength * dt);
-          spin.x += push.y * strength * dt * 0.08;
-          spin.y -= push.x * strength * dt * 0.08;
+        normal.copy(object.position).sub(cursor);
+        normal.z *= 0.3;
+        const distance = normal.length();
+        const reach = CURSOR_RADIUS + piece.radius * 0.4;
+        if (distance < reach && distance > 0.001) {
+          const hit = 1 - distance / reach;
+          normal.normalize();
+          // Shoved away from the cursor, and carried along with its motion.
+          velocity.addScaledVector(normal, hit * CURSOR_PUSH * dt);
+          velocity.addScaledVector(cursorVelocity, hit * CURSOR_CARRY * dt);
+          velocity.z += hit * 6 * dt; // toward the camera a little: reads as depth
+          // Spin around the axis the cursor swipes across.
+          spin.x -= cursorVelocity.y * hit * dt * 0.9;
+          spin.y += cursorVelocity.x * hit * dt * 0.9;
+          spin.z += (normal.x - normal.y) * hit * dt * 4;
         }
       }
       velocity.multiplyScalar(Math.max(0, 1 - DAMPING * dt));
+      if (velocity.length() > MAX_SPEED) velocity.setLength(MAX_SPEED);
       object.position.addScaledVector(velocity, dt);
-      spin.multiplyScalar(Math.max(0, 1 - 0.7 * dt)).clampScalar(-2, 2);
+      // Soft walls at the card's edges: bounce back in rather than fly off.
+      for (const axis of ["x", "y", "z"] as const) {
+        const wall = Math.max(BOUNDS[axis], Math.abs(home[axis]) + 1.5); // never inside a piece's own home
+        if (Math.abs(object.position[axis]) > wall && Math.sign(object.position[axis]) === Math.sign(velocity[axis])) {
+          velocity[axis] *= -RESTITUTION;
+        }
+      }
+      spin.multiplyScalar(Math.max(0, 1 - 0.9 * dt)).clampScalar(-6, 6);
       object.rotation.x += (spin.x + 0.04) * dt;
       object.rotation.y += (spin.y + 0.06) * dt;
       object.rotation.z += spin.z * dt;
     }
-    // Soft collisions: overlapping pieces push apart, so they bump like
-    // Lusion's instead of passing through each other.
+    // Collisions: overlapping pieces separate and ricochet off each other
+    // (velocities swap along the line between them, minus a little energy),
+    // so one hit piece can knock into its neighbours like Lusion's.
     for (let i = 0; i < pieces.length; i++) {
       for (let j = i + 1; j < pieces.length; j++) {
         const a = pieces[i];
         const b = pieces[j];
-        push.copy(a.object.position).sub(b.object.position);
-        const distance = push.length();
+        normal.copy(a.object.position).sub(b.object.position);
+        const distance = normal.length();
         const overlap = (a.radius + b.radius) * 0.7 - distance;
-        if (overlap > 0 && distance > 0.001) {
-          push.multiplyScalar((overlap * 0.5) / distance);
-          a.object.position.add(push);
-          b.object.position.sub(push);
-          a.velocity.addScaledVector(push, 4);
-          b.velocity.addScaledVector(push, -4);
+        if (overlap <= 0 || distance < 0.001) continue;
+        normal.divideScalar(distance);
+        a.object.position.addScaledVector(normal, overlap * 0.5);
+        b.object.position.addScaledVector(normal, -overlap * 0.5);
+        const approach = push.copy(a.velocity).sub(b.velocity).dot(normal);
+        if (approach < 0) {
+          const impulse = (-(1 + RESTITUTION) * approach) / 2;
+          a.velocity.addScaledVector(normal, impulse);
+          b.velocity.addScaledVector(normal, -impulse);
+          // A knock sets both spinning.
+          a.spin.z += impulse * 0.25;
+          b.spin.z -= impulse * 0.25;
         }
       }
     }

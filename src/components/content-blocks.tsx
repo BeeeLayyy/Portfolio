@@ -10,11 +10,14 @@ import { Tag } from "./ui";
 // (Lusion's project hover, D16). The row rises in as it scrolls into view.
 export function ProjectRow({ project, index = 0 }: { project: Project; index?: number }) {
   return (
-    <li className="border-b border-rule" data-reveal="rise" style={{ "--i": index } as CSSProperties}>
+    // The li itself never moves: the hover preview inside is position: fixed,
+    // and a transformed ancestor would pull it off the cursor mid-reveal.
+    <li className="border-b border-rule">
       <ProjectRowLink
         href={`/projects/${project.slug}`}
         image={project.image}
         transitionName={projectImageTransition(project.slug)}
+        reveal={index}
         className="group grid gap-2 py-6 md:grid-cols-[1fr_2fr_auto] md:items-baseline md:gap-8"
       >
         <span className="flex flex-col gap-2">

@@ -36,7 +36,8 @@ export function ScrollNav() {
       const rect = el.getBoundingClientRect();
       const seen = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / rect.height));
       const progress = atBottom() ? 0.5 + 0.5 * Math.min(1, extra / PUSH_TO_OPEN) : seen * 0.5;
-      el.style.setProperty("--progress", String(progress));
+      const bar = el.querySelector<HTMLElement>(".scroll-nav-bar");
+      if (bar) bar.style.transform = `scaleX(${progress})`; // on the bar itself, not a parent variable
     };
     const onScroll = () => {
       if (!atBottom()) extra = 0;

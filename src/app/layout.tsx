@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { EndSection } from "@/components/end-section";
-import { CursorTrail } from "@/components/motion/cursor-trail";
 import { Intro } from "@/components/motion/intro";
 import { RevealObserver } from "@/components/motion/reveal-observer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
@@ -103,7 +102,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ScrollNav />
         <RevealObserver />
         <SmoothScroll />
-        <CursorTrail />
         {/* Vercel Web Analytics (visits, no cookies) and Speed Insights (real
             visitors' load times). Both only send data on Vercel deployments
             once they're switched on in the project's dashboard. */}

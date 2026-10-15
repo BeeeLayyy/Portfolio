@@ -75,7 +75,7 @@ In use (D16, modeled on lusion.co):
 - **Project rows**: an arrow slides in before the title and the stack line re-types itself (text decode) on hover; the screenshot follows the cursor; it morphs into the project page (view transition).
 - **End section**, every page but Contact: the page warms from navy to blue, "Let's work together!" rises in and its rules draw from the left, "Keep scrolling" rolls.
 - **Scroll to next page**: at the bottom, a bar fills; keep scrolling with a mouse and the next page opens. Always a plain link too.
-- **Smooth scroll** (Lenis, mouse only) with a scroll indicator on the right edge that stretches with speed, and a soft blue **cursor trail** (mouse only).
+- **Smooth scroll** (Lenis, mouse only) with a scroll indicator on the right edge that stretches with speed.
 - Page changes fade in over 280ms; footer links underline from the left; Back to top rolls its arrow.
 
 ## 3D hero scene (D15, made personal in D17)
@@ -90,7 +90,7 @@ The Home card is Brandon's world as glossy 3D objects: dollar signs, gold coins 
 
 Scene colors are paint for 3D objects only, never text or interface; white, black and the green arrow reuse `--color-ink`, `--color-canvas` and `--color-gain`. Neutral tone mapping keeps them as bright as Lusion's.
 
-Cursor warp ("screen paint"): moving the mouse over the card leaves a fluid trail that bends the picture and splits its colors like a lens; it fades in about a second. Elsewhere on the page the cursor leaves a soft streak of blue light.
+Cursor warp ("screen paint"): moving the mouse over the card leaves a fluid trail that bends the picture and splits its colors like a lens; it fades in about a second. There is no page-wide trail: it ran on every mouse move for little gain (review-animations, Oct 15). The pieces bounce off the cursor: it hits them with its own speed, they fly, spin and knock into each other, then drift home.
 
 Phones, touch screens and reduced motion get a still instead: `public/images/hero-scene.webp` (wide) and `hero-scene-phone.webp` (tall), captured from the live scene. Recapture both whenever the scene changes.
 

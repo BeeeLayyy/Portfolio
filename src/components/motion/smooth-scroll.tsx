@@ -11,6 +11,19 @@ import { useEffect, useRef } from "react";
 //
 // Also draws the scroll indicator on the right edge: a short thumb that
 // tracks the page and stretches with scroll speed.
+// The live Lenis instance, so other components scroll through it instead of
+// starting a second, competing smooth scroll.
+let activeLenis: Lenis | null = null;
+
+export function scrollToTop() {
+  if (activeLenis) {
+    activeLenis.scrollTo(0);
+    return;
+  }
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+}
+
 export function SmoothScroll() {
   const pathname = usePathname();
   const thumb = useRef<HTMLDivElement>(null);
@@ -28,6 +41,7 @@ export function SmoothScroll() {
         if (cancelled) return;
         lenis = new Lenis({ autoRaf: true, lerp: 0.1, anchors: true });
         lenisRef.current = lenis;
+        activeLenis = lenis;
       });
     }
 
@@ -62,6 +76,7 @@ export function SmoothScroll() {
       cancelAnimationFrame(frame);
       lenis?.destroy();
       lenisRef.current = null;
+      activeLenis = null;
     };
   }, []);
 

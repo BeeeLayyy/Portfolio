@@ -69,6 +69,8 @@
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1); /* things moving across */
   --duration-quick: 140ms;  /* hover, focus */
   --duration-base: 280ms;   /* menus, toggles */
+  --duration-open: 240ms;   /* the menu card opening */
+  --duration-exit: 150ms;   /* things closing: faster than they opened */
   --duration-slow: 600ms;   /* page and section reveals */
   --duration-hero: 1100ms;  /* the one orchestrated hero moment */
   --duration-morph: 400ms;  /* an element moving between pages */
@@ -139,6 +141,7 @@ body {
     animation-delay: 0ms !important; /* no invisible wait before the instant change */
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+    transition-delay: 0ms !important; /* no word-by-word stagger either */
     scroll-behavior: auto !important;
   }
 }
@@ -333,7 +336,7 @@ body {
    Lusion-style motion (D16). Every effect lusion.co uses, rebuilt with our
    tokens: intro, word reveals, pill buttons, text roll, header pills and
    menu, scroll cue, growing showcase, scroll ribbon, end section, scroll to
-   next page, smooth scroll indicator and cursor trail. Reduced motion
+   next page and the smooth scroll indicator. Reduced motion
    collapses all of it (rule near the top); the intro never shows then.
    ========================================================================== */
 
@@ -563,13 +566,8 @@ body {
   }
 }
 
-.roll-host:focus-visible .roll-text {
-  transform: translateY(-100%);
-}
-
-.roll-host:focus-visible .roll-clone {
-  transform: none;
-}
+/* No roll on keyboard focus: tabbing fires it on every key press, and the
+   focus ring already shows where you are. */
 
 /* --- Pill buttons (ButtonLink): a dot that swells to fill the pill, the
    label sliding over, and an arrow sliding in from the right. --- */
@@ -615,7 +613,7 @@ body {
   flex: none;
   border-radius: var(--radius-pill);
   background: var(--color-accent-strong);
-  transition: transform var(--duration-slow) var(--ease-out-soft);
+  transition: transform var(--duration-base) var(--ease-out-soft);
 }
 
 .pill-text {
@@ -670,7 +668,7 @@ body {
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: scale(0.6);
+    transform: scale(0.9);
   }
 }
 
@@ -718,7 +716,9 @@ body {
 .talk-text,
 .talk-dots,
 .talk-arrow {
-  transition: transform var(--duration-base) var(--ease-out-soft);
+  transition:
+    transform var(--duration-base) var(--ease-out-soft),
+    opacity var(--duration-base) var(--ease-out-soft);
 }
 
 .talk-arrow {
@@ -776,7 +776,8 @@ body {
   }
 
   .talk-pill:hover .talk-dots {
-    transform: scale(0);
+    opacity: 0;
+    transform: scale(0.5);
   }
 
   .talk-pill:hover .talk-arrow {
@@ -794,12 +795,13 @@ body {
 
 /* The menu: a card that grows from the Menu pill. Each link has a soft
    bubble behind it, a rolling label and an arrow, like Lusion's. */
+/* Closing snaps (--duration-exit); opening takes a little longer. */
 .menu-panel {
   transform-origin: top right;
   transition:
-    opacity var(--duration-base) var(--ease-out-soft),
-    transform var(--duration-base) var(--ease-out-soft),
-    visibility 0s linear var(--duration-base);
+    opacity var(--duration-exit) ease,
+    transform var(--duration-exit) ease,
+    visibility 0s linear var(--duration-exit);
 }
 
 .menu-panel[data-open="false"] {
@@ -809,7 +811,10 @@ body {
 }
 
 .menu-panel[data-open="true"] {
-  transition-delay: 0s;
+  transition:
+    opacity var(--duration-open) var(--ease-out-soft),
+    transform var(--duration-open) var(--ease-out-soft),
+    visibility 0s;
 }
 
 .menu-link {
@@ -837,11 +842,6 @@ body {
   transition:
     opacity var(--duration-base) ease,
     transform var(--duration-base) var(--ease-out-soft);
-}
-
-.menu-panel[data-open="true"] .menu-link {
-  animation: rise-in var(--duration-slow) var(--ease-out-soft) both;
-  animation-delay: calc(var(--i) * var(--stagger) / 1.5);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -910,7 +910,6 @@ body {
 @keyframes showcase-grow {
   from {
     transform: scale(0.42);
-    border-radius: calc(var(--radius-media) * 2.4);
   }
 }
 
@@ -956,17 +955,27 @@ body {
 /* --- End section: the page warms from navy to the accent blue as it
    arrives (Lusion's background change), the title rises in, and its rules
    draw from the left. "Keep scrolling" rolls on a loop. --- */
+/* The blue is a layer behind the content that fades in (opacity only, so
+   scrolling doesn't repaint the whole section). */
 @keyframes end-warm {
-  from { background-color: var(--color-canvas); }
-  to { background-color: var(--color-accent-strong); }
+  from { opacity: 0; }
 }
 
 .end-section {
-  background-color: var(--color-accent-strong);
+  position: relative;
+  isolation: isolate;
+}
+
+.end-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent-strong);
 }
 
 @supports (animation-timeline: view()) {
-  .end-section {
+  .end-section::before {
     animation: end-warm linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 80%;
@@ -1007,16 +1016,25 @@ body {
 
 /* --- Footer links: an underline that draws from the left on hover. --- */
 .underline-draw {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 0% 1px;
-  transition: background-size var(--duration-base) var(--ease-out-soft);
+  position: relative;
+}
+
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-base) var(--ease-out-soft);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .underline-draw:hover {
-    background-size: 100% 1px;
+  .underline-draw:hover::after {
+    transform: scaleX(1);
   }
 
   .top-btn:hover .top-arrow {
@@ -1031,7 +1049,7 @@ body {
 /* --- Scroll to next page: the bar fills as you reach the bottom; keep
    scrolling and the next page opens (ScrollNav). --- */
 .scroll-nav-bar {
-  transform: scaleX(var(--progress, 0));
+  transform: scaleX(0); /* ScrollNav sets the transform directly as you scroll */
   transform-origin: left center;
 }
 

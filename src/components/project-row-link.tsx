@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import { useState, ViewTransition, type ReactNode } from "react";
+import { useState, ViewTransition, type CSSProperties, type ReactNode } from "react";
 import type { Image as ProjectImage } from "@/content/types";
 
 // Preview size and gap from the cursor, in px. Matches w-80 and a 16:9 image.
@@ -20,6 +20,7 @@ export function ProjectRowLink({
   image,
   transitionName,
   className,
+  reveal,
   children,
 }: {
   href: string;
@@ -27,6 +28,9 @@ export function ProjectRowLink({
   /** View-transition name shared with the project page's screenshot. */
   transitionName?: string;
   className?: string;
+  /** Rise in on scroll, this many steps into the stagger. Set on the link,
+      not the row, so the fixed preview beside it never moves with it. */
+  reveal?: number;
   children: ReactNode;
 }) {
   const reduce = useReducedMotion();
@@ -61,6 +65,8 @@ export function ProjectRowLink({
       <Link
         href={href}
         className={className}
+        data-reveal={reveal === undefined ? undefined : "rise"}
+        style={reveal === undefined ? undefined : ({ "--i": reveal } as CSSProperties)}
         onPointerEnter={(e) => {
           if (e.pointerType !== "mouse" || !image) return;
           place(e, true);
